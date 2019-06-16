@@ -12,7 +12,8 @@ function preload() {
 
 
 function setup() {
-  var canvas = createCanvas(windowWidth-400,windowHeight-200);
+  var canvassize = Math.ceil(displayWidth-(displayWidth/3));
+  var canvas = createCanvas(canvassize,canvassize);
   canvas.parent('sketch-holder');
   let birdBrain = NeuralNetwork.deserialize(brainJSON);
   bird = new Bird(birdBrain);
@@ -58,10 +59,9 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth-400, windowHeight-200);
-}
-
-
+  var canvass = Math.ceil(displayWidth-(displayWidth/3));
+  resizeCanvas(canvass,canvass);
+  }
 
 // function keyPressed() {
 //   if (key == ' ') {

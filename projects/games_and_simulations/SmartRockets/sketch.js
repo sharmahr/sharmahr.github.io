@@ -19,7 +19,8 @@ var rw = 200;
 var rh = 10;
 
 function setup() {
-    var canvas = createCanvas(windowWidth-400,windowHeight-200);
+   var canvassize = Math.ceil(displayWidth-(displayWidth/3));
+  var canvas = createCanvas(canvassize,canvassize);
   canvas.parent('sketch-holder');
   population = new Population();
   target = createVector(width / 2, 50);
@@ -44,5 +45,6 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth-400, windowHeight-200);
-}
+  var canvass = Math.ceil(displayWidth-(displayWidth/3));
+  resizeCanvas(canvass,canvass);
+  }

@@ -5,7 +5,8 @@ var mazeSize = 10;
 var traveller;
 
 function setup() {
-	var canvas = createCanvas(windowWidth-400,windowHeight-200);
+	 var canvassize = Math.ceil(displayWidth-(displayWidth/3));
+  var canvas = createCanvas(canvassize,canvassize);
 	canvas.parent('sketch-holder');
 	maze = generateMaze();
 	traveller = new Traveller(maze);
@@ -80,5 +81,6 @@ function keyPressed()
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth-400, windowHeight-200);
-}
+  var canvass = Math.ceil(displayWidth-(displayWidth/3));
+  resizeCanvas(canvass,canvass);
+  }
