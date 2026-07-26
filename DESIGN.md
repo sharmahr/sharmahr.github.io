@@ -57,16 +57,25 @@ background wash and never a gradient.
 - **Display — `Silkscreen`.** Bitmap, uppercase, poster scale only. Never below
   1.5rem, never for running text, `-webkit-font-smoothing: none` so pixels stay
   pixels. Tracking is positive, because bitmap faces set tight turn to mud.
+  Its whole remit is identity: the hero name, plate titles, page titles and the
+  masthead mark. Nothing else.
 - **Text — `Geist`.** Dense neo-grotesk for every paragraph, label and control.
   Body measure 62–70ch.
-- **Data — `Geist Mono`.** Tabular figures only: dates, durations, coordinates,
-  counts, the clock. Used for measurement, never as a costume for "technical".
+- **Data — `Geist Mono`.** Every figure and every piece of measurement: the
+  impact-ladder numerals, work outcomes, dates, durations, coordinates, counts,
+  the clock. Tabular figures throughout. Used for measurement, never as a
+  costume for "technical".
 
 The bitmap floor is enforced in code by `--t-bitmap-min: 1.5rem`; every
 `Silkscreen` rule clamps against it. Anything that would fall below the floor
-(plate indices, years, entry numbers, company names, outcome figures) takes
-`Geist Mono` or weighted `Geist` instead — an 8px pixel grid loses its counters
-under roughly 24px, so a smaller bitmap setting is unreadable, not smaller.
+(plate indices, years, entry numbers, company names) takes `Geist Mono` or
+weighted `Geist` instead — an 8px pixel grid loses its counters under roughly
+24px, so a smaller bitmap setting is unreadable, not smaller.
+
+**Figures are never set in the bitmap face at any size.** Silkscreen has no
+legible `%`, its `4` closes to a blob, and `8h → 20m` turns to mush, so the
+size ladder sets its numerals in `Geist Mono` 600. The ladder's idea is intact
+because the *size step* encodes magnitude, not the face.
 
 Instrument Serif is removed from the project.
 

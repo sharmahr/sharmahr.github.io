@@ -597,9 +597,7 @@ body > * { position: relative; z-index: var(--z-raise); }
   object-position: 50% 25%;
   border-radius: 0;
   filter: var(--portrait-filter, none);
-  transition: filter 0.4s var(--ease);
 }
-.portrait:hover img { filter: grayscale(0) contrast(1.05); }
 .portrait figcaption {
   margin-top: 0.6rem;
   color: var(--muted);
@@ -704,46 +702,52 @@ body > * { position: relative; z-index: var(--z-raise); }
 
 .rung {
   display: grid;
-  grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 13fr);
   align-items: baseline;
   gap: 0.5rem clamp(1rem, 0.5rem + 2vw, 3rem);
-  padding: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem) 0;
+  padding: clamp(1rem, 0.75rem + 1vw, 1.75rem) 0;
   border-bottom: 1px solid var(--rule-weak);
 }
 
+/* Figures are measurement, so they take the mono voice with tabular
+   figures — the same rule the work outcomes follow. The bitmap face cannot
+   hold a "%" or a "4" at any size the ladder actually uses, and the size
+   step still carries the magnitude on its own. */
 .rung__n {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  -webkit-font-smoothing: none;
-  font-smooth: never;
-  overflow-wrap: break-word;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 .rung__n em { font-style: normal; color: var(--accent); }
 
 /* Four steps down the ladder, largest magnitude first. */
-.rung[data-step="1"] .rung__n { font-size: clamp(1.75rem, 1.1rem + 3.1vw, 4rem); }
-.rung[data-step="2"] .rung__n { font-size: clamp(1.625rem, 1rem + 2.4vw, 3rem); }
-.rung[data-step="3"] .rung__n { font-size: clamp(var(--t-bitmap-min), 0.9rem + 1.8vw, 2.25rem); }
-.rung[data-step="4"] .rung__n { font-size: clamp(var(--t-bitmap-min), 0.85rem + 1.1vw, 1.75rem); }
+.rung[data-step="1"] .rung__n { font-size: clamp(2.25rem, 1.4rem + 3.4vw, 4.25rem); }
+.rung[data-step="2"] .rung__n { font-size: clamp(2rem, 1.3rem + 2.6vw, 3.375rem); }
+.rung[data-step="3"] .rung__n { font-size: clamp(1.75rem, 1.15rem + 2vw, 2.75rem); }
+.rung[data-step="4"] .rung__n { font-size: clamp(1.5rem, 1.05rem + 1.5vw, 2.25rem); }
 
 .rung__body { align-self: center; }
+/* The label carries the actual claim, so it reads at body size in full
+   ink rather than as caption-weight support under the number. */
 .rung__l {
-  color: var(--ink-soft);
-  font-size: var(--t-sm);
+  color: var(--ink);
+  font-size: var(--t-body);
   line-height: 1.5;
   display: block;
-  max-width: 52ch;
+  max-width: 56ch;
 }
 .rung__src {
   display: block;
-  margin-top: 0.35rem;
+  margin-top: 0.45rem;
   color: var(--muted);
 }
 
 @media (max-width: 720px) {
-  .rung { grid-template-columns: 1fr; gap: 0.45rem; }
+  .rung { grid-template-columns: 1fr; gap: 0.5rem; }
+  .rung__n { line-height: 1.15; }
 }
 
 /* ---------- 9. Work entries ---------- */
