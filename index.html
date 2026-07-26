@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 <title>Hardik Sharma — Software Engineer, Distributed Systems &amp; Cloud Platforms</title>
 <meta name="description" content="Software engineer with 6+ years building distributed systems and cloud infrastructure at Microsoft, Harness and VMware. Vulnerability remediation across 4,000+ datacenters, reserved-instance optimisation, applied AI.">
 <meta name="author" content="Hardik Sharma">
-<meta name="theme-color" content="#f6f4f0">
+<meta name="theme-color" content="#0b0a09">
 <link rel="canonical" href="https://sharmahr.github.io/">
 
 <meta property="og:type" content="profile">
@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/images/Hardik_Sharma.jpg">
+<link rel="apple-touch-icon" href="assets/images/Hardik_Sharma.jpeg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,9 +31,10 @@
   (function () {
     document.documentElement.classList.add("js");
     try {
+      /* Dark is the design, not a fallback. Only an explicit choice
+         stored by the visitor is allowed to override it. */
       var s = localStorage.getItem("hs-theme");
-      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+      if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
     } catch (e) {}
   })();
 </script>
@@ -44,7 +45,7 @@
   "@type": "Person",
   "name": "Hardik Sharma",
   "url": "https://sharmahr.github.io/",
-  "image": "https://sharmahr.github.io/assets/images/Hardik_Sharma.jpg",
+  "image": "https://sharmahr.github.io/assets/images/Hardik_Sharma.jpeg",
   "jobTitle": "Software Engineer 2",
   "email": "mailto:sharmahardik.mail@gmail.com",
   "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
@@ -133,10 +134,15 @@
       </div>
 
       <div data-reveal>
-        <figure class="portrait">
-          <img src="assets/images/Hardik_Sharma.jpg" width="512" height="512"
-               alt="Portrait of Hardik Sharma">
-        </figure>
+        <div class="hero__media">
+          <canvas class="lattice" id="lattice" width="520" height="520"
+                  aria-hidden="true" data-tilt-exclude></canvas>
+          <figure class="portrait">
+            <img src="assets/images/Hardik_Sharma.jpeg" width="512" height="512"
+                 alt="Portrait of Hardik Sharma">
+          </figure>
+        </div>
+        <p class="lattice__cap mono muted" aria-hidden="true">Fig. 1 — cluster topology · drag to rotate</p>
         <dl class="stack mt-3xl">
           <div class="stackrow">
             <dt class="mono">Now</dt>
@@ -159,7 +165,7 @@
   <section class="sec--tight wrap" aria-label="Impact at a glance">
     <div class="metrics">
       <div class="metric" data-reveal>
-        <span class="metric__n">4,000<em>+</em></span>
+        <span class="metric__n"><span data-count="4000">4,000</span><em>+</em></span>
         <span class="metric__l">Datacenters scanned and patched by the remediation platform I architected at VMware</span>
       </div>
       <div class="metric" data-reveal>
@@ -167,11 +173,11 @@
         <span class="metric__l">Reserved-instance exchange execution, after the accelerator I built at Harness</span>
       </div>
       <div class="metric" data-reveal>
-        <span class="metric__n">1,500<em>+</em></span>
+        <span class="metric__n"><span data-count="1500">1,500</span><em>+</em></span>
         <span class="metric__l">Engineers registered on AlgoRush, the interview-prep platform I build and run</span>
       </div>
       <div class="metric" data-reveal>
-        <span class="metric__n">50<em>%</em></span>
+        <span class="metric__n"><span data-count="50">50</span><em>%</em></span>
         <span class="metric__l">Cut in mean incident resolution time from the script-recommendation service</span>
       </div>
     </div>
@@ -260,82 +266,20 @@
       </figure>
     </article>
 
-    <article class="entry entry--fig" data-reveal>
-      <div class="entry__rail">
-        <span class="entry__idx mono">03</span>
-        <span class="entry__yr mono">2026</span>
-        <span class="mono muted">Open source</span>
-      </div>
-      <div class="entry__body">
-        <h3 class="entry__title">
-          <a class="lnk" href="https://github.com/sharmahr/macstorage-studio" target="_blank" rel="noopener">MacStorage Studio</a>
-          <span class="badge">Swift</span>
-        </h3>
-        <p class="entry__desc">
-          A native macOS disk-analysis app. The scanner runs in an isolated process so a
-          crash mid-walk of the filesystem never takes the UI with it, metadata lives in a
-          local SQLite store, and cleanup goes through Trash rather than <code>unlink</code>.
-          Ships as a signed build through GitHub Actions on every tag.
-        </p>
-        <div class="tags">
-          <span class="tag">Swift</span><span class="tag">SQLite</span>
-          <span class="tag">GitHub Actions</span><span class="tag">macOS</span>
-        </div>
-        <div class="entry__links">
-          <a class="arrowlink lnk" href="https://github.com/sharmahr/macstorage-studio" target="_blank" rel="noopener">
-            Source
-            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-          <a class="arrowlink lnk" href="https://github.com/sharmahr/macstorage-studio/releases/latest" target="_blank" rel="noopener">
-            Download build
-            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="plate">
-        <span class="plate__n">No<br>telemetry</span>
-        <span class="plate__l">Fully offline<br>local SQLite</span>
-      </div>
-    </article>
-
-    <article class="entry entry--fig" data-reveal>
-      <div class="entry__rail">
-        <span class="entry__idx mono">04</span>
-        <span class="entry__yr mono">2026</span>
-        <span class="mono muted">Open source</span>
-      </div>
-      <div class="entry__body">
-        <h3 class="entry__title">
-          <a class="lnk" href="https://github.com/sharmahr/zed-db" target="_blank" rel="noopener">zed-db</a>
-          <span class="badge">From scratch</span>
-        </h3>
-        <p class="entry__desc">
-          A persistent relational database engine written in Python, because the fastest way
-          to understand Postgres is to rebuild a small one. Hand-written SQL parser, B-tree
-          storage with disk persistence, hash and range indexes, inner/left/right/cross joins,
-          aggregates with <code>GROUP BY</code>, and <code>BEGIN/COMMIT/ROLLBACK</code>
-          transactions — with a REPL that reports whether a query took a sequential scan
-          or an index scan.
-        </p>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">B-tree</span>
-          <span class="tag">Query planner</span><span class="tag">Transactions</span>
-        </div>
-        <div class="entry__links">
-          <a class="arrowlink lnk" href="https://github.com/sharmahr/zed-db" target="_blank" rel="noopener">
-            Source
-            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="plate">
-        <span class="plate__n">SELECT<br>·JOIN·</span>
-        <span class="plate__l">Parser → planner<br>→ B-tree → disk</span>
-      </div>
-    </article>
-
     <h3 class="mono muted subhead">Also built</h3>
     <div class="index">
+      <a class="idxrow" href="https://github.com/sharmahr/macstorage-studio" target="_blank" rel="noopener">
+        <span class="idxrow__n mono">03</span>
+        <span class="idxrow__t">MacStorage Studio
+          <small>Native macOS disk analyser. Scanner runs out-of-process so a crash never takes the UI with it.</small></span>
+        <span class="idxrow__meta">Swift · GitHub ↗</span>
+      </a>
+      <a class="idxrow" href="https://github.com/sharmahr/zed-db" target="_blank" rel="noopener">
+        <span class="idxrow__n mono">04</span>
+        <span class="idxrow__t">zed-db
+          <small>A relational database built from scratch: SQL parser, B-tree storage, query planner, transactions.</small></span>
+        <span class="idxrow__meta">Python · GitHub ↗</span>
+      </a>
       <a class="idxrow" href="https://github.com/sharmahr/High-Level-System-Design" target="_blank" rel="noopener">
         <span class="idxrow__n mono">05</span>
         <span class="idxrow__t">High-Level System Design
@@ -378,74 +322,81 @@
       <p class="sec__note">Six years, three companies, one throughline: infrastructure at scale.</p>
     </div>
 
-    <article class="job" data-reveal>
-      <div class="entry__rail">
-        <h3 class="job__co">Microsoft</h3>
-        <span class="job__when mono">10/2025 — Present</span>
-        <span class="job__where">Hyderabad, India</span>
-      </div>
-      <div>
-        <p class="job__role">Software Engineer 2</p>
-        <p class="job__team mono mono--sent">Frontier Foundry</p>
-        <ul class="bullets">
-          <li>Built an <b>AI personalisation platform for Bing and OneDrive</b> that adapts wallpapers to season, time of day and contextual signals, making the surface feel responsive to the person using it rather than static.</li>
-          <li>Developed a <b>real-time voice assistant</b> that infers user intent, executes tasks across services and returns conversational responses at low latency.</li>
-        </ul>
-      </div>
-    </article>
+    <div class="timeline">
+      <span class="timeline__line" aria-hidden="true"></span>
+      <article class="job" data-reveal>
+        <span class="job__node" aria-hidden="true"></span>
+        <div class="entry__rail">
+          <h3 class="job__co">Microsoft</h3>
+          <span class="job__when mono">10/2025 — Present</span>
+          <span class="job__where">Hyderabad, India</span>
+        </div>
+        <div>
+          <p class="job__role">Software Engineer 2</p>
+          <p class="job__team mono mono--sent">Frontier Foundry</p>
+          <ul class="bullets">
+            <li>Built an <b>AI personalisation platform for Bing and OneDrive</b> that adapts wallpapers to season, time of day and contextual signals, making the surface feel responsive to the person using it rather than static.</li>
+            <li>Developed a <b>real-time voice assistant</b> that infers user intent, executes tasks across services and returns conversational responses at low latency.</li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="job" data-reveal>
-      <div class="entry__rail">
-        <h3 class="job__co">Harness</h3>
-        <span class="job__when mono">09/2024 — 06/2025</span>
-        <span class="job__where">Bangalore, India</span>
-      </div>
-      <div>
-        <p class="job__role">Senior Software Engineer</p>
-        <p class="job__team mono mono--sent">Cloud Cost Management</p>
-        <ul class="bullets">
-          <li>Led design and implementation of a <b>seed-based Reserved Instance optimisation workflow</b> that automatically provisions, expands and rebalances commitments while preserving expiration timelines and maximising coverage.</li>
-          <li>Built a transaction execution accelerator for RI exchanges that took end-to-end execution from <b>eight hours to under twenty minutes</b>, through workflow orchestration, resiliency work and parallelised processing.</li>
-          <li>Integrated commitment and cluster optimisation engines to prioritise underutilised Reserved Instances and Savings Plans, reducing wasted cloud spend.</li>
-          <li>Developed a <b>commitment inventory platform</b> giving customers real-time visibility into RIs and Savings Plans across cloud accounts.</li>
-        </ul>
-      </div>
-    </article>
+      <article class="job" data-reveal>
+        <span class="job__node" aria-hidden="true"></span>
+        <div class="entry__rail">
+          <h3 class="job__co">Harness</h3>
+          <span class="job__when mono">09/2024 — 06/2025</span>
+          <span class="job__where">Bangalore, India</span>
+        </div>
+        <div>
+          <p class="job__role">Senior Software Engineer</p>
+          <p class="job__team mono mono--sent">Cloud Cost Management</p>
+          <ul class="bullets">
+            <li>Led design and implementation of a <b>seed-based Reserved Instance optimisation workflow</b> that automatically provisions, expands and rebalances commitments while preserving expiration timelines and maximising coverage.</li>
+            <li>Built a transaction execution accelerator for RI exchanges that took end-to-end execution from <b>eight hours to under twenty minutes</b>, through workflow orchestration, resiliency work and parallelised processing.</li>
+            <li>Integrated commitment and cluster optimisation engines to prioritise underutilised Reserved Instances and Savings Plans, reducing wasted cloud spend.</li>
+            <li>Developed a <b>commitment inventory platform</b> giving customers real-time visibility into RIs and Savings Plans across cloud accounts.</li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="job" data-reveal>
-      <div class="entry__rail">
-        <h3 class="job__co">VMware</h3>
-        <span class="job__when mono">07/2020 — 08/2024</span>
-        <span class="job__where">Bangalore, India</span>
-      </div>
-      <div>
-        <p class="job__role">Member of Technical Staff 3</p>
-        <p class="job__team mono mono--sent">VMware Cloud Platform</p>
-        <ul class="bullets">
-          <li>Architected and delivered a <b>vulnerability remediation platform</b> that scanned and patched infrastructure across <b>4,000+ datacenters</b>, cutting operational overhead and shortening security response times.</li>
-          <li>Led development of a <b>distributed fleet execution platform</b> for secure remote execution of automation workflows across thousands of datacenters, improving operational efficiency by <b>over 50%</b>.</li>
-          <li>Built semantic search over operational data using <b>transformer-based models</b>, so engineers could find insights by meaning rather than exact keyword.</li>
-          <li>Developed automated patch orchestration, incident escalation workflows and real-time operational dashboards.</li>
-          <li>Built monitoring and reporting services that automated <b>SLA computation</b> and health tracking across critical infrastructure, removing manual reporting entirely.</li>
-        </ul>
-      </div>
-    </article>
+      <article class="job" data-reveal>
+        <span class="job__node" aria-hidden="true"></span>
+        <div class="entry__rail">
+          <h3 class="job__co">VMware</h3>
+          <span class="job__when mono">07/2020 — 08/2024</span>
+          <span class="job__where">Bangalore, India</span>
+        </div>
+        <div>
+          <p class="job__role">Member of Technical Staff 3</p>
+          <p class="job__team mono mono--sent">VMware Cloud Platform</p>
+          <ul class="bullets">
+            <li>Architected and delivered a <b>vulnerability remediation platform</b> that scanned and patched infrastructure across <b>4,000+ datacenters</b>, cutting operational overhead and shortening security response times.</li>
+            <li>Led development of a <b>distributed fleet execution platform</b> for secure remote execution of automation workflows across thousands of datacenters, improving operational efficiency by <b>over 50%</b>.</li>
+            <li>Built semantic search over operational data using <b>transformer-based models</b>, so engineers could find insights by meaning rather than exact keyword.</li>
+            <li>Developed automated patch orchestration, incident escalation workflows and real-time operational dashboards.</li>
+            <li>Built monitoring and reporting services that automated <b>SLA computation</b> and health tracking across critical infrastructure, removing manual reporting entirely.</li>
+          </ul>
+        </div>
+      </article>
 
-    <article class="job" data-reveal>
-      <div class="entry__rail">
-        <h3 class="job__co">VMware</h3>
-        <span class="job__when mono">01/2020 — 06/2020</span>
-        <span class="job__where">Bangalore, India</span>
-      </div>
-      <div>
-        <p class="job__role">Software Engineering Intern</p>
-        <p class="job__team mono mono--sent">VMware Cloud Platform</p>
-        <ul class="bullets">
-          <li>Built an intelligent recommendation service matching operational incidents to relevant remediation scripts, cutting <b>mean resolution time by 50%</b>.</li>
-          <li>Developed a cloud-based IDE on <b>Eclipse Che and Theia</b> for infrastructure automation engineers to write, test and deploy scripts in one place.</li>
-        </ul>
-      </div>
-    </article>
+      <article class="job" data-reveal>
+        <span class="job__node" aria-hidden="true"></span>
+        <div class="entry__rail">
+          <h3 class="job__co">VMware</h3>
+          <span class="job__when mono">01/2020 — 06/2020</span>
+          <span class="job__where">Bangalore, India</span>
+        </div>
+        <div>
+          <p class="job__role">Software Engineering Intern</p>
+          <p class="job__team mono mono--sent">VMware Cloud Platform</p>
+          <ul class="bullets">
+            <li>Built an intelligent recommendation service matching operational incidents to relevant remediation scripts, cutting <b>mean resolution time by 50%</b>.</li>
+            <li>Developed a cloud-based IDE on <b>Eclipse Che and Theia</b> for infrastructure automation engineers to write, test and deploy scripts in one place.</li>
+          </ul>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- ============ Toolkit ============ -->
@@ -610,6 +561,9 @@
 </footer>
 
 <script src="assets/js/site.js" defer></script>
+<script src="assets/vendor/zdog.min.js" defer></script>
+<script src="assets/vendor/vanilla-tilt.min.js" defer></script>
+<script type="module" src="assets/js/motion.js"></script>
 <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
 </body>
 </html>

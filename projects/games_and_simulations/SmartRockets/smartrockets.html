@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Smart Rockets — Hardik Sharma</title>
 <meta name="description" content="Rockets that evolve their flight path to a target using a genetic algorithm, built in Processing and p5.js.">
-<meta name="theme-color" content="#f6f4f0">
+<meta name="theme-color" content="#0b0a09">
 <link rel="canonical" href="https://sharmahr.github.io/projects/games_and_simulations/SmartRockets/smartrockets.html">
 <meta property="og:title" content="Smart Rockets — Hardik Sharma">
 <meta property="og:description" content="Rockets that evolve their flight path to a target using a genetic algorithm, built in Processing and p5.js.">
@@ -21,9 +21,10 @@
   (function () {
     document.documentElement.classList.add("js");
     try {
+      /* Dark is the design, not a fallback. Only an explicit choice
+         stored by the visitor is allowed to override it. */
       var s = localStorage.getItem("hs-theme");
-      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+      if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
     } catch (e) {}
   })();
 </script>
@@ -97,6 +98,8 @@
 <script src="rocket.js"></script>
 <script src="sketch.js"></script>
 <script src="../../../assets/js/site.js" defer></script>
+<script src="../../../assets/vendor/vanilla-tilt.min.js" defer></script>
+<script type="module" src="../../../assets/js/motion.js"></script>
 <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
 </body>
 </html>

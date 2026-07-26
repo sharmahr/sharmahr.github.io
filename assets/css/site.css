@@ -7,17 +7,30 @@
 /* ---------- 1. Tokens ---------- */
 
 :root {
-  /* Light — warm paper */
-  --paper:        #f6f4f0;
-  --paper-2:      #efece6;
-  --ink:          #12110f;
-  --ink-soft:     #423f3a;
-  --muted:        #6f6b64;
-  --rule:         rgba(18, 17, 15, 0.13);
-  --rule-strong:  rgba(18, 17, 15, 0.28);
-  --accent:       #b23a17;
-  --accent-soft:  rgba(178, 58, 23, 0.10);
-  --grain:        0.038;
+  /* ---- Dark is the default. Warm near-black, never pure #000. ----
+     Four surface steps give the page real depth instead of one flat
+     slab: page, raised, hover, and a hairline that reads at low
+     contrast without glowing. */
+  --paper:        #0b0a09;
+  --paper-2:      #131110;
+  --paper-3:      #1c1917;
+  --ink:          #f3efe7;
+  --ink-soft:     #b9b2a7;
+  --muted:        #857e74;
+  --rule:         rgba(243, 239, 231, 0.11);
+  --rule-strong:  rgba(243, 239, 231, 0.26);
+  --accent:       #e8663a;
+  --accent-soft:  rgba(232, 102, 58, 0.14);
+  --accent-glow:  rgba(232, 102, 58, 0.30);
+  --grain:        0.055;
+
+  /* Ambient warmth so the dark page has a light source rather than
+     reading as an unlit void. */
+  --halo:         radial-gradient(120% 68% at 50% -12%, rgba(232, 102, 58, 0.10) 0%, rgba(232, 102, 58, 0.03) 34%, transparent 68%);
+  --img-filter:   brightness(0.86) contrast(1.06);
+  --shadow:       0 1px 0 rgba(243, 239, 231, 0.04), 0 18px 44px -22px rgba(0, 0, 0, 0.9);
+
+  color-scheme: dark;
 
   /* Geist over Inter: Inter is the default AI-portfolio fingerprint.
      Serif display + grotesque body + matched mono = one coherent voice. */
@@ -49,22 +62,26 @@
 
   --ease:    cubic-bezier(0.22, 0.68, 0.16, 1);
   --dur:     0.7s;
-
-  color-scheme: light;
 }
 
-[data-theme="dark"] {
-  --paper:        #0e0d0c;
-  --paper-2:      #161513;
-  --ink:          #ece8e1;
-  --ink-soft:     #c3bdb3;
-  --muted:        #8b867d;
-  --rule:         rgba(236, 232, 225, 0.15);
-  --rule-strong:  rgba(236, 232, 225, 0.34);
-  --accent:       #e0693c;
-  --accent-soft:  rgba(224, 105, 60, 0.13);
-  --grain:        0.05;
-  color-scheme: dark;
+/* Light stays available as a deliberate choice, not the default. */
+[data-theme="light"] {
+  --paper:        #f6f4f0;
+  --paper-2:      #efece6;
+  --paper-3:      #e6e2da;
+  --ink:          #12110f;
+  --ink-soft:     #423f3a;
+  --muted:        #6f6b64;
+  --rule:         rgba(18, 17, 15, 0.13);
+  --rule-strong:  rgba(18, 17, 15, 0.28);
+  --accent:       #b23a17;
+  --accent-soft:  rgba(178, 58, 23, 0.10);
+  --accent-glow:  rgba(178, 58, 23, 0.22);
+  --grain:        0.038;
+  --halo:         radial-gradient(120% 68% at 50% -12%, rgba(178, 58, 23, 0.05) 0%, transparent 62%);
+  --img-filter:   none;
+  --shadow:       0 1px 0 rgba(18, 17, 15, 0.03), 0 18px 44px -24px rgba(18, 17, 15, 0.35);
+  color-scheme: light;
 }
 
 /* ---------- 2. Base ---------- */
@@ -96,6 +113,22 @@ p { margin: 0; text-wrap: pretty; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
+
+/* Screenshots and photographs are lit for a white page; take the glare
+   off them so they sit in the dark surface rather than punching a hole. */
+.prose img, .cards img { filter: var(--img-filter, none); }
+
+/* A single light source at the top of the page. Without it the dark
+   theme reads as an unlit void rather than a room. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--halo);
+}
+body > * { position: relative; z-index: var(--z-raise); }
 
 ::selection { background: var(--accent); color: var(--paper); }
 
@@ -288,7 +321,7 @@ body::after {
   transition: transform 0.55s var(--ease);
 }
 /* Contrast glyph, not the sun/moon cliché — it rotates through the theme change */
-[data-theme="dark"] .iconbtn svg { transform: rotate(180deg); }
+[data-theme="light"] .iconbtn svg { transform: rotate(180deg); }
 
 /* Scroll progress hairline */
 .prog {
@@ -391,6 +424,37 @@ body::after {
 .btn--solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .btn--solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
+/* The lattice is a technical illustration pinned behind the portrait,
+   the way a diagram would sit behind a photo on a contact sheet. */
+.hero__media {
+  position: relative;
+  isolation: isolate;
+}
+.lattice {
+  position: absolute;
+  top: 3%;
+  left: 44%;
+  width: 22rem;
+  height: 22rem;
+  max-width: 80vw;
+  z-index: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  opacity: 0;
+  filter: drop-shadow(0 0 22px var(--accent-glow));
+  transition: opacity 900ms ease;
+}
+.lattice.is-in { opacity: 0.85; }
+.lattice:active { cursor: grabbing; }
+.lattice__cap {
+  margin-top: 0.9rem;
+  font-size: var(--t-micro);
+  letter-spacing: 0.09em;
+}
+@media (max-width: 900px) {
+  .lattice { left: auto; right: -4%; top: -12%; width: 13rem; height: 13rem; }
+}
+
 .portrait {
   position: relative;
   max-width: 15rem;
@@ -400,7 +464,7 @@ body::after {
 }
 .portrait img {
   width: 100%;
-  filter: grayscale(1) contrast(1.06);
+  filter: grayscale(1) contrast(1.06) var(--img-filter, none);
   transition: filter 0.6s var(--ease);
 }
 .portrait:hover img { filter: grayscale(0) contrast(1); }
@@ -609,23 +673,30 @@ body::after {
   .entry--fig .shot { grid-column: 1; }
 }
 
-.shot { margin: 0; align-self: start; }
+.shot { margin: 0; align-self: start; transform-style: preserve-3d; }
 .shot img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center top;
   border: 1px solid var(--rule);
-  filter: grayscale(1) contrast(1.04);
-  transition: filter 0.6s var(--ease), border-color 0.4s var(--ease);
+  filter: grayscale(1) contrast(1.04) var(--img-filter, none);
+  box-shadow: var(--shadow);
+  transform: translateZ(24px);
+  transition: filter 0.6s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.entry:hover .shot img { filter: none; border-color: var(--rule-strong); }
+.entry:hover .shot img {
+  filter: none;
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow), 0 0 46px -18px var(--accent-glow);
+}
 .shot figcaption {
   margin-top: 0.55rem;
   color: var(--muted);
   font-family: var(--font-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.04em;
+  transform: translateZ(12px);
 }
 
 /* Typographic plate — stands in for a screenshot without faking one.
@@ -641,9 +712,15 @@ body::after {
   background:
     radial-gradient(120% 90% at 50% 0%, var(--accent-soft), transparent 62%),
     var(--paper-2);
-  transition: border-color 0.4s var(--ease);
+  box-shadow: var(--shadow);
+  transform-style: preserve-3d;
+  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.entry:hover .plate { border-color: var(--rule-strong); }
+.entry:hover .plate {
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow), 0 0 46px -18px var(--accent-glow);
+}
+.plate > * { transform: translateZ(28px); }
 .plate__n {
   font-family: var(--font-display);
   font-size: clamp(2rem, 1.2rem + 3vw, 3.25rem);
@@ -712,13 +789,68 @@ body::after {
 .job {
   display: grid;
   grid-template-columns: var(--rail) minmax(0, 1fr);
-  gap: clamp(1.5rem, 1rem + 2.5vw, 4rem);
+  gap: var(--tl-gap, clamp(1.5rem, 1rem + 2.5vw, 4rem));
   padding-block: clamp(1.75rem, 1.4rem + 2vw, 2.75rem);
   border-top: 1px solid var(--rule);
+  position: relative;
 }
 .job:last-of-type { border-bottom: 1px solid var(--rule); }
 @media (max-width: 860px) {
   .job { grid-template-columns: 1fr; gap: 0.9rem; }
+}
+
+/* Timeline: a rule down the gutter between the rail and the prose, so it
+   lands exactly on the existing grid line instead of inventing a new one.
+   It draws itself as you scroll, and each role knots onto it. */
+.timeline {
+  --tl-gap: clamp(1.5rem, 1rem + 2.5vw, 4rem);
+  --tl-x: calc(var(--rail) + var(--tl-gap) / 2);
+  position: relative;
+}
+.timeline__line {
+  position: absolute;
+  left: var(--tl-x);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--rule-strong), var(--accent) 55%, var(--rule-strong));
+  transform-origin: 50% 0;
+  pointer-events: none;
+  /* Drawn by default, so a failed script leaves a complete rule, not a gap. */
+  transform: scaleY(1);
+}
+/* Only the motion layer is allowed to start it from nothing. */
+.js.motion .timeline__line { transform: scaleY(0); }
+
+.job__node {
+  position: absolute;
+  left: var(--tl-x);
+  top: -4.5px;
+  width: 9px;
+  height: 9px;
+  margin-left: -4px;
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  pointer-events: none;
+  /* Present by default; the motion layer is what makes it arrive. */
+  transform: rotate(45deg) scale(1);
+  transition:
+    transform 420ms cubic-bezier(0.2, 1.5, 0.4, 1),
+    border-color 420ms var(--ease),
+    background-color 420ms var(--ease);
+}
+.js.motion .job__node { transform: rotate(45deg) scale(0); }
+.js.motion .job__node.is-live { transform: rotate(45deg) scale(1); }
+.job__node.is-live {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--paper), 0 0 14px var(--accent-glow);
+}
+@media (max-width: 860px) {
+  .timeline__line, .job__node { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline__line { transform: scaleY(1) !important; }
 }
 
 .job__co {
@@ -889,6 +1021,9 @@ body::after {
   transform: none;
   filter: none;
 }
+/* When the Motion layer is live it owns transform outright, so CSS stops
+   offsetting and animates opacity alone. The two never fight over a value. */
+.js.motion [data-reveal] { transform: none; filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

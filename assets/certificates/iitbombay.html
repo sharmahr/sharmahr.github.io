@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Third place, Meshmerize — Techfest, IIT Bombay — Hardik Sharma</title>
 <meta name="description" content="Placed third with a maze-solving robot that maps every turn on a dry run, then eliminates dead-end U-turns to compute the shortest route on the second pass.">
-<meta name="theme-color" content="#f6f4f0">
+<meta name="theme-color" content="#0b0a09">
 <link rel="canonical" href="https://sharmahr.github.io/assets/certificates/iitbombay.html">
 <meta property="og:title" content="Third place, Meshmerize — Techfest, IIT Bombay — Hardik Sharma">
 <meta property="og:description" content="Placed third with a maze-solving robot that maps every turn on a dry run, then eliminates dead-end U-turns to compute the shortest route on the second pass.">
@@ -21,9 +21,10 @@
   (function () {
     document.documentElement.classList.add("js");
     try {
+      /* Dark is the design, not a fallback. Only an explicit choice
+         stored by the visitor is allowed to override it. */
       var s = localStorage.getItem("hs-theme");
-      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+      if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
     } catch (e) {}
   })();
 </script>
@@ -85,6 +86,8 @@
 </footer>
 
 <script src="../../assets/js/site.js" defer></script>
+<script src="../../assets/vendor/vanilla-tilt.min.js" defer></script>
+<script type="module" src="../../assets/js/motion.js"></script>
 <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
 </body>
 </html>

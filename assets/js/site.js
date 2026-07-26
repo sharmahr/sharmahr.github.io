@@ -6,11 +6,13 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- Theme ---------- */
+  var THEME_COLOR = { dark: "#0b0a09", light: "#f6f4f0" };
+
   function setTheme(t) {
     root.setAttribute("data-theme", t);
     try { localStorage.setItem("hs-theme", t); } catch (e) {}
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", t === "dark" ? "#0e0d0c" : "#f6f4f0");
+    if (m) m.setAttribute("content", THEME_COLOR[t] || THEME_COLOR.dark);
   }
 
   var toggle = document.querySelector("[data-theme-toggle]");
@@ -20,34 +22,40 @@
     });
   }
 
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
-    var stored = null;
-    try { stored = localStorage.getItem("hs-theme"); } catch (err) {}
-    if (!stored) setTheme(e.matches ? "dark" : "light");
-  });
+  /* The site is designed dark; that is a decision, not a default we
+     hand to the OS. Light is available, but only if the visitor asks. */
 
-  /* ---------- Scroll reveal (staggered within a group) ---------- */
+  /* ---------- Scroll reveal ----------
+     This owns visibility, always, using a plain IntersectionObserver and a
+     CSS transition. assets/js/motion.js layers spring physics on top when
+     it loads, but it only ever touches transform. Nothing about the
+     animation layer can leave a visitor staring at invisible content. */
   var revealables = document.querySelectorAll("[data-reveal]");
   function reveal(el) { el.classList.add("is-in"); }
 
   if (reduced || !("IntersectionObserver" in window)) {
     revealables.forEach(reveal);
   } else {
+    observeReveal();
+  }
+
+  function observeReveal() {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         var el = entry.target;
         var group = el.parentElement ? el.parentElement.querySelectorAll(":scope > [data-reveal]") : [];
         var i = Array.prototype.indexOf.call(group, el);
-        el.style.setProperty("--d", Math.min(i < 0 ? 0 : i, 6) * 65 + "ms");
+        /* Motion supplies its own stagger; only add CSS delay without it. */
+        if (!window.__hsMotion) el.style.setProperty("--d", Math.min(i < 0 ? 0 : i, 6) * 65 + "ms");
         reveal(el);
         io.unobserve(el);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealables.forEach(function (el) { io.observe(el); });
 
-    /* Failsafe: anything already on screen, or sitting in the bottom band the
-       observer's negative margin can never reach, is shown unconditionally. */
+    /* Anything already on screen, or sitting in the bottom band the
+       observer's negative margin can never reach, is shown outright. */
     var sweep = function () {
       var vh = window.innerHeight;
       var atEnd = window.scrollY + vh >= document.documentElement.scrollHeight - 4;
@@ -57,7 +65,7 @@
         if (atEnd || (top < vh && top > -el.offsetHeight)) { reveal(el); io.unobserve(el); }
       });
     };
-    window.addEventListener("load", function () { setTimeout(sweep, 300); });
+    sweep();
     window.addEventListener("scroll", sweep, { passive: true });
   }
 
@@ -69,7 +77,8 @@
   function onScroll() {
     var y = window.scrollY || window.pageYOffset;
     if (nav) nav.classList.toggle("is-stuck", y > 8);
-    if (prog) {
+    /* Motion drives the progress bar when it is present. */
+    if (prog && !window.__hsMotion) {
       var max = document.documentElement.scrollHeight - window.innerHeight;
       prog.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
     }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Best Innovation Award, RoboCup — Hardik Sharma</title>
 <meta name="description" content="Awarded Best Innovation among 120 teams at RoboCup, part of Axis'18 — the annual technical festival of Visvesvaraya National Institute of Technology, Nagpur.">
-<meta name="theme-color" content="#f6f4f0">
+<meta name="theme-color" content="#0b0a09">
 <link rel="canonical" href="https://sharmahr.github.io/assets/certificates/vnit.html">
 <meta property="og:title" content="Best Innovation Award, RoboCup — Hardik Sharma">
 <meta property="og:description" content="Awarded Best Innovation among 120 teams at RoboCup, part of Axis'18 — the annual technical festival of Visvesvaraya National Institute of Technology, Nagpur.">
@@ -21,9 +21,10 @@
   (function () {
     document.documentElement.classList.add("js");
     try {
+      /* Dark is the design, not a fallback. Only an explicit choice
+         stored by the visitor is allowed to override it. */
       var s = localStorage.getItem("hs-theme");
-      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+      if (s === "light" || s === "dark") document.documentElement.setAttribute("data-theme", s);
     } catch (e) {}
   })();
 </script>
@@ -85,6 +86,8 @@
 </footer>
 
 <script src="../../assets/js/site.js" defer></script>
+<script src="../../assets/vendor/vanilla-tilt.min.js" defer></script>
+<script type="module" src="../../assets/js/motion.js"></script>
 <script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
 </body>
 </html>
