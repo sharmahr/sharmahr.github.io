@@ -1,52 +1,39 @@
 import { motion } from "framer-motion";
-import Counter from "../Counter.jsx";
 import { ENTER } from "../../lib/motion.js";
 
 const grid = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } }
+  visible: { transition: { staggerChildren: 0.06 } }
 };
 
 const cell = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 14 },
   visible: { opacity: 1, y: 0, transition: ENTER }
 };
 
-const METRICS = [
+/* Ordered by magnitude, because on this ladder the size step carries the
+   information: the largest figure is set largest. */
+const RUNGS = [
   {
-    figure: (
-      <>
-        <Counter to={4000} />
-        <em>+</em>
-      </>
-    ),
-    label: "Datacenters scanned and patched by the remediation platform I architected at VMware"
+    n: "4000+",
+    label:
+      "Datacenters scanned and patched by the vulnerability remediation platform I architected",
+    src: "VMware · 2020—2024"
   },
   {
-    figure: (
-      <>
-        8h <em>→</em> 20m
-      </>
-    ),
-    label: "Reserved-instance exchange execution, after the accelerator I built at Harness"
+    n: "1500+",
+    label: "Engineers registered on AlgoRush, the interview-prep platform I build and run",
+    src: "Independent · ongoing"
   },
   {
-    figure: (
-      <>
-        <Counter to={1500} />
-        <em>+</em>
-      </>
-    ),
-    label: "Engineers registered on AlgoRush, the interview-prep platform I build and run"
+    n: "50%",
+    label: "Cut in mean incident resolution time from the script-recommendation service I built",
+    src: "VMware · 2020"
   },
   {
-    figure: (
-      <>
-        <Counter to={50} />
-        <em>%</em>
-      </>
-    ),
-    label: "Cut in mean incident resolution time from the script-recommendation service"
+    n: ["8h", "20m"],
+    label: "Reserved-instance exchange execution, after the transaction accelerator I built",
+    src: "Harness · 2024"
   }
 ];
 
@@ -54,16 +41,27 @@ export default function Metrics() {
   return (
     <section className="sec--tight wrap" aria-label="Impact at a glance">
       <motion.div
-        className="metrics"
+        className="ladder"
         variants={grid}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.15 }}
       >
-        {METRICS.map((m) => (
-          <motion.div className="metric" key={m.label} variants={cell} data-reveal>
-            <span className="metric__n">{m.figure}</span>
-            <span className="metric__l">{m.label}</span>
+        {RUNGS.map((r, i) => (
+          <motion.div className="rung" data-step={i + 1} key={r.src} variants={cell} data-reveal>
+            <span className="rung__n">
+              {Array.isArray(r.n) ? (
+                <>
+                  {r.n[0]} <em>&rarr;</em> {r.n[1]}
+                </>
+              ) : (
+                r.n
+              )}
+            </span>
+            <span className="rung__body">
+              <span className="rung__l">{r.label}</span>
+              <span className="rung__src mono">{r.src}</span>
+            </span>
           </motion.div>
         ))}
       </motion.div>

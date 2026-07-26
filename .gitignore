@@ -3,3 +3,7 @@ node_modules/
 dist/
 .vite/
 *.log
+
+# local design/validation artifacts
+.shots/
+.playwright-mcp/

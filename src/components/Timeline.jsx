@@ -41,8 +41,8 @@ function Job({ job }) {
       <motion.span
         className={`job__node${live ? " is-live" : ""}`}
         aria-hidden="true"
-        initial={{ scale: 0, rotate: 45 }}
-        whileInView={{ scale: 1, rotate: 45 }}
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
         viewport={{ once: true, amount: 0.1 }}
         onViewportEnter={() => setLive(true)}
         transition={{ type: "spring", stiffness: 380, damping: 14, delay: 0.1 }}

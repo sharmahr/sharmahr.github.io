@@ -20,8 +20,8 @@ const heroPart = {
 };
 
 const namePart = {
-  hidden: { opacity: 0, y: 40, scale: 0.97 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: LEAD }
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: LEAD }
 };
 
 export default function Hero() {
@@ -34,27 +34,31 @@ export default function Hero() {
 
   return (
     <motion.section className="hero wrap" initial="hidden" animate="visible" variants={heroStage}>
-      <motion.p className="hero__meta mono" variants={heroPart} data-reveal>
-        <span>
+      <motion.div className="sheet mono" variants={heroPart} data-reveal>
+        <span>Specimen 01 — Engineer</span>
+        <span>Hyderabad · {new Date().getFullYear()} edition</span>
+      </motion.div>
+
+      <motion.div className="hero__status mono" variants={heroPart} data-reveal>
+        <span className="live">
           <span className="dot" />
-          Open to senior backend &amp; platform roles
+          Open to AI roles
         </span>
         <span>{PROFILE.location}</span>
         <span>
           <Clock /> IST
         </span>
-      </motion.p>
+      </motion.div>
 
       <motion.h1 className="hero__name" variants={namePart} data-reveal>
-        Hardik
-        <br />
-        Sharma
+        <em>Hardik</em>
+        <em>Sharma</em>
       </motion.h1>
 
-      <motion.div className="hero__rule" variants={heroPart} data-reveal>
-        <span className="mono">Software Engineer 2 — Microsoft</span>
-        <hr className="hr" />
-        <span className="mono muted">Since 2020</span>
+      <motion.div className="hero__role mono" variants={heroPart} data-reveal>
+        <span>Software Engineer 2 — Microsoft</span>
+        <span>Frontier Foundry</span>
+        <span>Since 2020</span>
       </motion.div>
 
       <div className="hero__grid">
@@ -68,7 +72,7 @@ export default function Hero() {
           </p>
           <p className="lead mt-lg">
             Six years of backend, cloud infrastructure and applied&nbsp;AI — mostly{" "}
-            <span className="serif it">Java, Python and Kubernetes</span>.
+            <span className="serif">Java, Python and Kubernetes</span>.
           </p>
 
           <div className="hero__cta">
@@ -78,6 +82,7 @@ export default function Hero() {
               whileTap={{ scale: 0.96 }}
             >
               Email me
+              <ArrowOut />
             </motion.a>
             <Link className="btn" to="/resume">
               Résumé

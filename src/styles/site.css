@@ -6,37 +6,39 @@
 
 /* ---------- 1. Tokens ---------- */
 
+/* Newsprint is the default stock. Rich black is the ink. One synthetic
+   accent does every piece of signalling on the page, the way a spot
+   colour does on a two-plate press run. */
 :root {
-  /* ---- Dark is the default. Warm near-black, never pure #000. ----
-     Four surface steps give the page real depth instead of one flat
-     slab: page, raised, hover, and a hairline that reads at low
-     contrast without glowing. */
-  --paper:        #0b0a09;
-  --paper-2:      #131110;
-  --paper-3:      #1c1917;
-  --ink:          #f3efe7;
-  --ink-soft:     #b9b2a7;
-  --muted:        #857e74;
-  --rule:         rgba(243, 239, 231, 0.11);
-  --rule-strong:  rgba(243, 239, 231, 0.26);
-  --accent:       #e8663a;
-  --accent-soft:  rgba(232, 102, 58, 0.14);
-  --accent-glow:  rgba(232, 102, 58, 0.30);
-  --grain:        0.055;
+  --paper:        #f5f3ec;
+  --paper-2:      #eae7dc;
+  --paper-3:      #ded9ca;
+  --ink:          #0a0a0a;
+  --ink-soft:     #33322d;
+  --muted:        #6b6a61;
+  /* Rules are printed, not hinted. No low-opacity fog anywhere. */
+  --rule:         #0a0a0a;
+  --rule-weak:    rgba(10, 10, 10, 0.22);
+  --accent:       #e8452a;
+  --accent-ink:   #ffffff;
+  --accent-wash:  rgba(232, 69, 42, 0.12);
 
-  /* Ambient warmth so the dark page has a light source rather than
-     reading as an unlit void. */
-  --halo:         radial-gradient(120% 68% at 50% -12%, rgba(232, 102, 58, 0.10) 0%, rgba(232, 102, 58, 0.03) 34%, transparent 68%);
-  --img-filter:   brightness(0.86) contrast(1.06);
-  --portrait-filter: saturate(1.08) contrast(1.02) brightness(0.96);
-  --shadow:       0 1px 0 rgba(243, 239, 231, 0.04), 0 18px 44px -22px rgba(0, 0, 0, 0.9);
+  /* Halftone and dot matrix are surfaces in this world, not texture
+     decoration: a 60lpi dot field and a 10x10 matrix. */
+  --dot-ink:      rgba(10, 10, 10, 0.5);
+  --halftone:     0.5;
 
-  color-scheme: dark;
+  --img-filter:   grayscale(0.35) contrast(1.12);
+  --portrait-filter: grayscale(0.55) contrast(1.2) brightness(1.02);
+  /* The only shadow in the system: hard, offset, unblurred. */
+  --drop:         4px 4px 0 var(--ink);
+  --drop-sm:      3px 3px 0 var(--ink);
 
-  /* Geist over Inter: Inter is the default AI-portfolio fingerprint.
-     Serif display + grotesque body + matched mono = one coherent voice. */
-  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-ui:      "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+
+  /* Bitmap display, dense grotesk text, mono strictly for measurement. */
+  --font-display: "Silkscreen", "Courier New", monospace;
+  --font-ui:      "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   --font-mono:    "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* z-index scale — no magic numbers */
@@ -46,18 +48,28 @@
   --z-grain: 80;
   --z-skip:  200;
 
-  /* Fluid type scale */
-  --t-micro: 0.6875rem;
-  --t-mono:  0.75rem;
+  /* Fluid type scale.
+     Three roles, three faces:
+       display (Silkscreen) — short uppercase strings and figures, never
+         below --t-bitmap-min, never a sentence;
+       text (Geist) — all prose, titles and statements;
+       measure (Geist Mono) — indices, years, captions, labels.
+     The bitmap floor is a legibility constraint, not a taste call: an 8px
+     pixel grid loses its counters under roughly 24px. */
+  --t-bitmap-min: 1.5rem;
+  --t-micro: 0.75rem;
+  --t-mono:  0.8125rem;
   --t-sm:    0.875rem;
   --t-body:  clamp(1rem, 0.97rem + 0.14vw, 1.0625rem);
-  --t-lead:  clamp(1.125rem, 1.04rem + 0.42vw, 1.375rem);
-  --t-h3:    clamp(1.5rem, 1.3rem + 0.95vw, 2.125rem);
-  --t-h2:    clamp(2rem, 1.6rem + 2vw, 3.5rem);
-  --t-hero:  clamp(3.4rem, 1.2rem + 12.4vw, 10.5rem);
-  --t-num:   clamp(2.6rem, 1.6rem + 4.2vw, 5rem);
+  --t-lead:  clamp(1.0625rem, 1rem + 0.34vw, 1.25rem);
+  --t-h3:    clamp(1.125rem, 0.98rem + 0.7vw, 1.75rem);
+  --t-h2:    clamp(1.375rem, 1.1rem + 1.35vw, 2.5rem);
+  /* Bitmap faces have wide advance widths, so the display step is capped
+     well below a serif's: HARDIK must never overflow a 320px screen. */
+  --t-hero:  clamp(2rem, 0.6rem + 7vw, 5.5rem);
+  --t-num:   clamp(2rem, 1.3rem + 3.2vw, 4rem);
 
-  --gut:     clamp(1.25rem, 0.7rem + 2.6vw, 3.5rem);
+  --gut:     clamp(1.15rem, 0.7rem + 2.4vw, 3.25rem);
   --rail:    13.5rem;
   --maxw:    78rem;
 
@@ -65,25 +77,25 @@
   --dur:     0.7s;
 }
 
-/* Light stays available as a deliberate choice, not the default. */
-[data-theme="light"] {
-  --paper:        #f6f4f0;
-  --paper-2:      #efece6;
-  --paper-3:      #e6e2da;
-  --ink:          #12110f;
-  --ink-soft:     #423f3a;
-  --muted:        #6f6b64;
-  --rule:         rgba(18, 17, 15, 0.13);
-  --rule-strong:  rgba(18, 17, 15, 0.28);
-  --accent:       #b23a17;
-  --accent-soft:  rgba(178, 58, 23, 0.10);
-  --accent-glow:  rgba(178, 58, 23, 0.22);
-  --grain:        0.038;
-  --halo:         radial-gradient(120% 68% at 50% -12%, rgba(178, 58, 23, 0.05) 0%, transparent 62%);
-  --img-filter:   none;
-  --portrait-filter: saturate(1.04);
-  --shadow:       0 1px 0 rgba(18, 17, 15, 0.03), 0 18px 44px -24px rgba(18, 17, 15, 0.35);
-  color-scheme: light;
+/* The same specimen printed as a negative. Not a fallback — the toggle
+   is a plate swap, and both plates are finished work. */
+[data-theme="dark"] {
+  --paper:        #0a0a0a;
+  --paper-2:      #141413;
+  --paper-3:      #1f1e1c;
+  --ink:          #f5f3ec;
+  --ink-soft:     #c9c6ba;
+  --muted:        #8b8980;
+  --rule:         #f5f3ec;
+  --rule-weak:    rgba(245, 243, 236, 0.24);
+  --accent:       #ff5a3c;
+  --accent-ink:   #0a0a0a;
+  --accent-wash:  rgba(255, 90, 60, 0.16);
+  --dot-ink:      rgba(245, 243, 236, 0.42);
+  --halftone:     0.42;
+  --img-filter:   grayscale(0.45) contrast(1.15) brightness(0.9);
+  --portrait-filter: grayscale(0.6) contrast(1.25) brightness(0.92);
+  color-scheme: dark;
 }
 
 /* ---------- 2. Base ---------- */
@@ -107,7 +119,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: background-color 0.45s var(--ease), color 0.45s var(--ease);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 h1, h2, h3, h4 { margin: 0; font-weight: 400; text-wrap: balance; }
@@ -116,39 +128,32 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
-/* Screenshots and photographs are lit for a white page; take the glare
-   off them so they sit in the dark surface rather than punching a hole. */
+/* Photographs are halftoned toward the two-plate look rather than left
+   as full-colour intrusions on a newsprint page. */
 .prose img, .cards img { filter: var(--img-filter, none); }
 
-/* A single light source at the top of the page. Without it the dark
-   theme reads as an unlit void rather than a room. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: var(--halo);
-}
-body > * { position: relative; z-index: var(--z-raise); }
-
-::selection { background: var(--accent); color: var(--paper); }
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 1px;
-}
-
-/* Paper grain — kills the flat, synthetic look */
+/* The stock itself: a 60lpi dot field, fixed and pointer-transparent, so
+   the page reads as something printed rather than something rendered. */
 body::after {
   content: "";
   position: fixed;
-  inset: -50%;
+  inset: 0;
   z-index: var(--z-grain);
   pointer-events: none;
-  opacity: var(--grain);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.16;
+  background-image: radial-gradient(var(--dot-ink) 0.5px, transparent 0.6px);
+  background-size: 3px 3px;
+}
+
+body > * { position: relative; z-index: var(--z-raise); }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+/* Square, offset, and the same weight as a printed rule. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0;
 }
 
 .skip {
@@ -188,6 +193,7 @@ body::after {
   border: 0;
   margin: 0;
 }
+.hr--heavy { height: 2px; }
 
 /* ---------- 4. Typographic utilities ---------- */
 
@@ -203,20 +209,36 @@ body::after {
 /* Sentence-case mono for longer metadata — avoids all-caps fatigue */
 .mono--sent { text-transform: none; letter-spacing: 0.02em; }
 
-.serif { font-family: var(--font-display); font-weight: 400; }
+/* Bitmap display. Poster scale only, never running text, and never
+   antialiased — the low resolution is the point. */
+.bit {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  /* Bitmap faces set tight turn to mud, so tracking runs positive. */
+  letter-spacing: 0.02em;
+  line-height: 1;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+}
+
+/* The old serif voice is gone; emphasis now comes from weight, which is
+   what the specimen world uses. */
+.serif { font-weight: 600; color: var(--ink); }
 
 .muted { color: var(--muted); }
 
 .lead {
   font-size: var(--t-lead);
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 46ch;
+  max-width: 62ch;
 }
 
 .acc { color: var(--accent); }
 
-.it { font-style: italic; }
+.it { font-style: normal; }
 
 /* Link with a wiping underline */
 .lnk {
@@ -244,92 +266,148 @@ body::after {
 
 /* ---------- 5. Nav ---------- */
 
+/* The specimen's masthead: a solid ink bar, opaque, with a printed rule
+   under it. No glass, no blur — this page is stock, not a window. */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: var(--z-nav);
-  background: color-mix(in srgb, var(--paper) 86%, transparent);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease);
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 2px solid var(--ink);
 }
-.nav.is-stuck { border-bottom-color: var(--rule); }
 
 .nav__in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
-  height: 4.25rem;
+  gap: 1rem;
+  height: 3.5rem;
 }
 
 .mark {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.125rem;
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   text-decoration: none;
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.05em;
+  align-items: center;
+  gap: 0.1em;
+  -webkit-font-smoothing: none;
+  white-space: nowrap;
 }
 .mark span { color: var(--accent); }
 
-.nav__links { display: flex; align-items: center; gap: 1.75rem; }
+.nav__links { display: flex; align-items: center; gap: 0.5rem; }
 @media (max-width: 900px) { .nav__links .nav__set { display: none; } }
+@media (min-width: 901px) { .nav__links { gap: 1.25rem; } }
 
-.nav__set { display: flex; gap: 1.5rem; }
+.nav__set { display: flex; gap: 0.25rem; }
 
+/* Active item takes the spot colour as a solid block, the way a teletext
+   or specimen index marks the page you are on. */
 .nav__link {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.11em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--muted);
-  transition: color 0.28s var(--ease);
-  position: relative;
+  color: var(--paper);
+  opacity: 0.66;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.6rem;
+  transition: opacity 0.2s var(--ease), background-color 0.2s var(--ease);
 }
-.nav__link::before {
-  content: "";
-  position: absolute;
-  left: -0.65rem; top: 50%;
-  width: 3px; height: 3px;
-  border-radius: 50%;
+.nav__link:hover { opacity: 1; }
+.nav__link.is-active {
+  opacity: 1;
   background: var(--accent);
-  transform: translateY(-50%) scale(0);
-  transition: transform 0.3s var(--ease);
+  color: var(--accent-ink);
 }
-.nav__link:hover, .nav__link.is-active { color: var(--ink); }
-.nav__link.is-active::before { transform: translateY(-50%) scale(1); }
 
+/* Below 900px five plates cannot sit side by side, so the index becomes a
+   disclosure rather than disappearing. Navigation is never dropped. */
+.nav__idx {
+  appearance: none;
+  background: none;
+  border: 1px solid var(--paper);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  min-height: 2.75rem;
+  padding: 0 0.8rem;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.nav__idx:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+@media (min-width: 901px) { .nav__idx { display: none; } }
+
+.nav__panel {
+  border-top: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+  background: var(--ink);
+  max-height: calc(100dvh - 3.5rem);
+  overflow-y: auto;
+}
+.nav__panel[hidden] { display: none; }
+
+.plateidx { list-style: none; margin: 0; padding-block: 0.25rem 0.75rem; }
+.plateidx__a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  /* Comfortably past the 44px touch floor. */
+  min-height: 3.25rem;
+  color: var(--paper);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  border-bottom: 1px solid color-mix(in srgb, var(--paper) 20%, transparent);
+}
+.plateidx li:last-child .plateidx__a { border-bottom: 0; }
+.plateidx__n { color: var(--accent); font-variant-numeric: tabular-nums; flex: none; }
+.plateidx__a.is-active { color: var(--accent); }
+
+/* The one circle in the system: a printer's registration mark. The 2rem
+   mark is centred inside a 44px hit area rather than being the hit area. */
 .iconbtn {
   appearance: none;
   background: none;
-  border: 1px solid var(--rule);
-  color: var(--ink);
-  width: 2.25rem; height: 2.25rem;
-  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  position: relative;
+  color: var(--paper);
+  width: 2.75rem; height: 2.75rem;
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: border-color 0.3s var(--ease), background-color 0.3s var(--ease), transform 0.3s var(--ease);
+  flex: none;
 }
-.iconbtn:hover { border-color: var(--rule-strong); background: var(--accent-soft); }
-.iconbtn:active { transform: scale(0.93); }
-.iconbtn svg {
-  width: 16px; height: 16px;
-  transition: transform 0.55s var(--ease);
+.iconbtn::before {
+  content: "";
+  position: absolute;
+  width: 2rem; height: 2rem;
+  border: 2px solid currentColor;
+  border-radius: 50%;
 }
-/* Contrast glyph, not the sun/moon cliché — it rotates through the theme change */
-[data-theme="light"] .iconbtn svg { transform: rotate(180deg); }
+.iconbtn:hover { color: var(--accent); }
+.iconbtn svg { width: 15px; height: 15px; position: relative; }
+[data-theme="dark"] .iconbtn svg { transform: rotate(180deg); }
 
-/* Scroll progress hairline */
+/* Scroll progress: a solid spot-colour bar, no gradient. */
 .prog {
   position: fixed;
   top: 0; left: 0;
-  height: 2px;
+  height: 3px;
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
@@ -340,59 +418,85 @@ body::after {
 /* ---------- 6. Hero ---------- */
 
 .hero {
-  padding-top: clamp(7rem, 5rem + 9vw, 11rem);
-  padding-bottom: clamp(3rem, 2rem + 4vw, 5rem);
+  padding-top: clamp(5rem, 4rem + 5vw, 7rem);
+  padding-bottom: clamp(2.5rem, 2rem + 3vw, 4rem);
 }
 
-.hero__meta {
+/* The specimen sheet's header band: what this sheet is, and its edition. */
+.sheet {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--rule);
+  color: var(--muted);
+}
+
+.hero__status {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.6rem 1.4rem;
-  color: var(--muted);
-  margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+  gap: 0.5rem 1.25rem;
+  margin: 1.1rem 0 clamp(1.25rem, 1rem + 1.5vw, 2rem);
+  color: var(--ink-soft);
 }
+.hero__status > * { display: inline-flex; align-items: center; gap: 0.5rem; }
 
+/* Availability reads as a live plate, so it gets the spot colour as a
+   solid block — the only place a status is allowed to shout. */
+.live {
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.34rem 0.6rem;
+}
 .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #2e9e5b;
+  width: 7px; height: 7px;
+  background: currentColor;
   display: inline-block;
-  margin-right: 0.5rem;
-  vertical-align: 0.5px;
-  box-shadow: 0 0 0 0 rgba(46, 158, 91, 0.6);
-  animation: pulse 2.6s var(--ease) infinite;
+  flex: none;
+  animation: blink 1.6s steps(1, end) infinite;
 }
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(46, 158, 91, 0.55); }
-  70%  { box-shadow: 0 0 0 7px rgba(46, 158, 91, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(46, 158, 91, 0); }
+@keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.25; } }
+
+/* On phones the availability plate takes the full measure as a status
+   band rather than wrapping raggedly against the location and clock. */
+@media (max-width: 560px) {
+  .hero__status { gap: 0.6rem 1rem; }
+  .hero__status .live { flex: 0 0 100%; }
 }
 
+/* Poster scale, whole-pixel steps, never antialiased. */
 .hero__name {
   font-family: var(--font-display);
+  font-weight: 700;
   font-size: var(--t-hero);
-  line-height: 0.84;
-  letter-spacing: -0.028em;
-  margin-left: -0.055em; /* optical alignment */
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  overflow-wrap: break-word;
 }
+.hero__name em { font-style: normal; display: block; }
 
-.hero__rule {
+.hero__role {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 1.25rem;
-  margin: clamp(1.75rem, 1.2rem + 2.2vw, 3rem) 0 clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  gap: 0.5rem 1.25rem;
+  margin: clamp(1rem, 0.8rem + 1vw, 1.5rem) 0 clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--rule);
+  color: var(--muted);
 }
-.hero__rule .hr { flex: 1; }
 
 .hero__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  gap: clamp(2rem, 1rem + 4vw, 5rem);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
   align-items: start;
-}
-@media (max-width: 860px) {
-  .hero__grid { grid-template-columns: 1fr; }
 }
 
 .hero__cta {
@@ -402,99 +506,102 @@ body::after {
   margin-top: 2rem;
 }
 
+/* Square, printed, and raised by a hard offset rather than a blur. */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.6rem;
   font-family: var(--font-mono);
   font-size: var(--t-mono);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
+  font-weight: 500;
   text-decoration: none;
-  padding: 0.72rem 1.15rem;
-  border: 1px solid var(--rule-strong);
-  background: transparent;
+  padding: 0.7rem 1.05rem;
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
   color: var(--ink);
   cursor: pointer;
-  transition: background-color 0.32s var(--ease), color 0.32s var(--ease),
-              border-color 0.32s var(--ease), transform 0.32s var(--ease);
+  box-shadow: 0 0 0 var(--ink);
+  transition: box-shadow 0.18s var(--ease), transform 0.18s var(--ease),
+              background-color 0.18s var(--ease), color 0.18s var(--ease);
 }
-.btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.btn:active { transform: translateY(1px); }
-.btn svg { width: 13px; height: 13px; flex: none; }
+.btn:hover {
+  box-shadow: var(--drop);
+  transform: translate(-3px, -3px);
+}
+.btn:active { box-shadow: 0 0 0 var(--ink); transform: translate(0, 0); }
+.btn svg { width: 12px; height: 12px; flex: none; }
 
-.btn--solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.btn--solid:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn--solid {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--solid:hover { box-shadow: var(--drop); }
 
-/* The lattice is a technical illustration pinned behind the portrait,
-   the way a diagram would sit behind a photo on a contact sheet. */
-/* Portrait and lattice sit side by side: with a square crop there is no
-   longer a tall column for the diagram to hide behind, so it stands as its
-   own figure rather than floating over the text below it. */
+/* The lattice is a technical figure on a specimen sheet: ink only, no
+   glow, and it sits in the plate margin beside the portrait. */
 .hero__media {
   position: relative;
   isolation: isolate;
   display: flex;
   align-items: flex-start;
-  gap: clamp(0.4rem, 0.1rem + 0.8vw, 1rem);
+  gap: clamp(0.5rem, 0.2rem + 0.8vw, 1rem);
 }
 .lattice {
-  /* Second in the row but first in the markup, so the canvas never
-     steals the reading order from the photograph. */
   order: 1;
   flex: 0 0 auto;
-  width: 14rem;
-  height: 14rem;
+  width: 11rem;
+  height: 11rem;
   aspect-ratio: 1 / 1;
-  /* Runs into the page margin rather than crowding the photograph. */
-  margin-right: -2.5rem;
+  margin-right: -1.5rem;
   z-index: 0;
   cursor: grab;
   touch-action: pan-y;
   opacity: 0;
-  filter: drop-shadow(0 0 22px var(--accent-glow));
-  transition: opacity 900ms ease;
+  transition: opacity 700ms var(--ease);
 }
-.lattice.is-in { opacity: 0.85; }
+.lattice.is-in { opacity: 0.75; }
 .lattice:active { cursor: grabbing; }
 .lattice__cap {
-  margin-top: 0.9rem;
+  margin-top: 0.75rem;
   font-size: var(--t-micro);
   letter-spacing: 0.09em;
 }
-@media (max-width: 900px) {
-  .lattice { width: 11rem; height: 11rem; margin-right: -1.25rem; }
-  .portrait { width: 12rem; }
-}
-/* Decorative only: below this the photograph should have the width. */
-@media (max-width: 720px) {
-  .lattice, .lattice__cap { display: none; }
-}
 
+/* A photograph on a specimen sheet is a plate: ruled frame, dot-matrix
+   backing showing in the margin, halftoned toward the two-plate look. */
 .portrait {
   position: relative;
   order: 0;
   flex: 0 0 auto;
-  width: 15rem;
-  max-width: 15rem;
-  /* Overlap: the portrait rides up over the rule above it */
-  margin-top: clamp(-3.5rem, -2rem - 2vw, 0rem);
+  width: 14rem;
+  max-width: 14rem;
+  margin: 0;
+  padding: 0.55rem;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background-color: var(--paper-2);
+  background-image: radial-gradient(var(--dot-ink) 0.6px, transparent 0.7px);
+  background-size: 5px 5px;
   z-index: var(--z-raise);
 }
 .portrait img {
   width: 100%;
-  /* The height attribute would otherwise be taken as a fixed height and
-     stretch the crop, so the square is stated here rather than inferred. */
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: 50% 25%;
+  border-radius: 0;
   filter: var(--portrait-filter, none);
-  transition: filter 0.6s var(--ease);
+  transition: filter 0.4s var(--ease);
 }
-.portrait:hover img { filter: saturate(1.16) contrast(1.04) brightness(1.02); }
+.portrait:hover img { filter: grayscale(0) contrast(1.05); }
 .portrait figcaption {
-  margin-top: 0.7rem;
+  margin-top: 0.6rem;
   color: var(--muted);
   line-height: 1.5;
 }
@@ -502,18 +609,33 @@ body::after {
 .stack {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  margin-top: 1.75rem;
+  border-top: 2px solid var(--rule);
 }
 .stackrow {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
   gap: 1rem;
-  padding-bottom: 0.85rem;
-  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule-weak);
 }
-.stackrow:last-child { border-bottom: 0; }
 .stackrow dt { color: var(--muted); }
 .stackrow dd { margin: 0; font-size: var(--t-sm); }
+
+@media (max-width: 900px) {
+  .portrait { width: 12rem; max-width: 12rem; }
+}
+@media (max-width: 860px) {
+  .hero__grid { grid-template-columns: 1fr; }
+}
+/* Decorative and fixed-size: below the two-column hero it has no plate
+   margin to sit in, so the photograph takes the width instead. */
+@media (max-width: 900px) {
+  .lattice, .lattice__cap { display: none; }
+}
+@media (max-width: 720px) {
+  .portrait { width: 100%; max-width: 20rem; }
+}
 
 /* ---------- 7. Sections ---------- */
 
@@ -533,65 +655,96 @@ body::after {
   gap: 1rem;
   margin-bottom: clamp(1.75rem, 1.2rem + 2.4vw, 3.25rem);
 }
-.sec__num { color: var(--accent); flex: none; }
+/* Plate number sits in a solid accent block, the way a specimen sheet
+   stamps its plate index. */
+.sec__num {
+  flex: none;
+  align-self: center;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.2rem 0.45rem;
+  line-height: 1;
+}
 .sec__title {
   font-family: var(--font-display);
-  font-size: var(--t-h2);
-  line-height: 1;
-  letter-spacing: -0.022em;
+  font-weight: 700;
+  /* Never below the bitmap legibility floor, even at 320px. */
+  font-size: clamp(var(--t-bitmap-min), 1.2rem + 0.9vw, 1.875rem);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
   flex: none;
 }
 .sec__head .hr { flex: 1; align-self: center; }
 .sec__note {
   flex: none;
   color: var(--muted);
-  max-width: 24ch;
+  max-width: 26ch;
   text-align: right;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.0625rem;
-  line-height: 1.35;
+  font-size: var(--t-sm);
+  line-height: 1.45;
 }
-@media (max-width: 760px) {
-  .sec__head { flex-wrap: wrap; }
-  .sec__note { display: none; }
-}
-
-/* ---------- 8. Impact numerals ---------- */
-
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-top: 1px solid var(--rule);
-}
-@media (max-width: 900px) { .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 460px) { .metrics { grid-template-columns: 1fr; } }
-
-.metric {
-  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem) 1.25rem clamp(1.5rem, 1rem + 2vw, 2.25rem) 0;
-  border-bottom: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-}
-.metrics .metric:nth-child(4n) { border-right: 0; }
 @media (max-width: 900px) {
-  .metrics .metric:nth-child(4n) { border-right: 1px solid var(--rule); }
-  .metrics .metric:nth-child(2n) { border-right: 0; }
-}
-@media (max-width: 460px) {
-  .metrics .metric { border-right: 0 !important; }
+  .sec__head { flex-wrap: wrap; row-gap: 0.6rem; }
+  /* Let the note become its own full-width row instead of a rigid
+     flex:none block that pushes the page wider than the viewport. */
+  .sec__note { flex: 1 1 100%; max-width: 100%; text-align: left; }
 }
 
-.metric__n {
-  font-family: var(--font-display);
-  font-size: var(--t-num);
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  display: block;
-  margin-bottom: 0.6rem;
-  font-variant-numeric: tabular-nums;
+/* ---------- 8. Impact ladder ---------- */
+
+/* The specimen's size ladder, carrying real figures: one form ranked at
+   descending sizes, where the size step encodes the magnitude rather than
+   decorating it. This replaces the big-number/small-label stats grid. */
+.ladder {
+  border-top: 2px solid var(--rule);
 }
-.metric__n em { font-style: italic; color: var(--accent); }
-.metric__l { color: var(--muted); font-size: var(--t-sm); line-height: 1.45; }
+
+.rung {
+  display: grid;
+  grid-template-columns: minmax(0, 9fr) minmax(0, 11fr);
+  align-items: baseline;
+  gap: 0.5rem clamp(1rem, 0.5rem + 2vw, 3rem);
+  padding: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem) 0;
+  border-bottom: 1px solid var(--rule-weak);
+}
+
+.rung__n {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+  overflow-wrap: break-word;
+}
+.rung__n em { font-style: normal; color: var(--accent); }
+
+/* Four steps down the ladder, largest magnitude first. */
+.rung[data-step="1"] .rung__n { font-size: clamp(1.75rem, 1.1rem + 3.1vw, 4rem); }
+.rung[data-step="2"] .rung__n { font-size: clamp(1.625rem, 1rem + 2.4vw, 3rem); }
+.rung[data-step="3"] .rung__n { font-size: clamp(var(--t-bitmap-min), 0.9rem + 1.8vw, 2.25rem); }
+.rung[data-step="4"] .rung__n { font-size: clamp(var(--t-bitmap-min), 0.85rem + 1.1vw, 1.75rem); }
+
+.rung__body { align-self: center; }
+.rung__l {
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  display: block;
+  max-width: 52ch;
+}
+.rung__src {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .rung { grid-template-columns: 1fr; gap: 0.45rem; }
+}
 
 /* ---------- 9. Work entries ---------- */
 
@@ -616,10 +769,10 @@ body::after {
 .entry__yr { color: var(--muted); }
 
 .entry__title {
-  font-family: var(--font-display);
   font-size: var(--t-h3);
-  line-height: 1.08;
-  letter-spacing: -0.018em;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -633,12 +786,12 @@ body::after {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.24rem 0.5rem;
-  border: 1px solid var(--rule-strong);
+  border: 1px solid var(--rule-weak);
   color: var(--muted);
   line-height: 1;
   white-space: nowrap;
 }
-.badge--live { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.badge--live { color: var(--accent); border-color: var(--accent); background: var(--accent-wash); }
 
 .entry__desc {
   margin-top: 0.85rem;
@@ -653,11 +806,14 @@ body::after {
   gap: 0.5rem 2.25rem;
 }
 .outcome { display: flex; align-items: baseline; gap: 0.55rem; }
+/* Figures are measurement, so they take the mono voice with tabular
+   figures — the bitmap face cannot hold at this size. */
 .outcome b {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.4rem;
-  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
   color: var(--accent);
   line-height: 1;
 }
@@ -674,7 +830,7 @@ body::after {
   font-size: var(--t-micro);
   letter-spacing: 0.05em;
   color: var(--muted);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-weak);
   padding: 0.2rem 0.5rem;
   white-space: nowrap;
 }
@@ -698,22 +854,20 @@ body::after {
   .entry--fig .shot { grid-column: 1; }
 }
 
-.shot { margin: 0; align-self: start; transform-style: preserve-3d; }
+.shot { margin: 0; align-self: start; }
 .shot img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center top;
   border: 1px solid var(--rule);
-  filter: grayscale(1) contrast(1.04) var(--img-filter, none);
-  box-shadow: var(--shadow);
-  transform: translateZ(24px);
-  transition: filter 0.6s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  filter: grayscale(1) contrast(1.06) var(--img-filter, none);
+  transition: filter 0.5s var(--ease), box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .entry:hover .shot img {
   filter: none;
-  border-color: var(--rule-strong);
-  box-shadow: var(--shadow), 0 0 46px -18px var(--accent-glow);
+  box-shadow: var(--drop);
+  transform: translate(-2px, -2px);
 }
 .shot figcaption {
   margin-top: 0.55rem;
@@ -721,11 +875,10 @@ body::after {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.04em;
-  transform: translateZ(12px);
 }
 
 /* Typographic plate — stands in for a screenshot without faking one.
-   Keeps the figure column consistent across every entry. */
+   Printed on the dot-matrix ground so the figure column stays consistent. */
 .plate {
   aspect-ratio: 4 / 3;
   border: 1px solid var(--rule);
@@ -734,31 +887,36 @@ body::after {
   text-align: center;
   gap: 0.5rem;
   padding: 1.25rem;
-  background:
-    radial-gradient(120% 90% at 50% 0%, var(--accent-soft), transparent 62%),
-    var(--paper-2);
-  box-shadow: var(--shadow);
-  transform-style: preserve-3d;
-  transition: border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  background-color: var(--paper-2);
+  background-image: radial-gradient(var(--dot-ink) 0.9px, transparent 0.9px);
+  background-size: 8px 8px;
+  transition: box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .entry:hover .plate {
-  border-color: var(--rule-strong);
-  box-shadow: var(--shadow), 0 0 46px -18px var(--accent-glow);
+  box-shadow: var(--drop);
+  transform: translate(-2px, -2px);
 }
-.plate > * { transform: translateZ(28px); }
+.plate > * {
+  /* Knocked out of the dot field on solid stock, the way a printed label
+     patch sits over a halftone ground. */
+  background: var(--paper-2);
+  padding: 0.1rem 0.5rem;
+}
 .plate__n {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 1.2rem + 3vw, 3.25rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: clamp(var(--t-bitmap-min), 0.9rem + 1.6vw, 2.125rem);
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
 }
 .plate__l {
   font-family: var(--font-mono);
   font-size: var(--t-micro);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--ink-soft);
   line-height: 1.6;
 }
 .arrowlink {
@@ -784,9 +942,14 @@ body::after {
   padding: 1.05rem 0.5rem 1.05rem 0;
   border-bottom: 1px solid var(--rule);
   text-decoration: none;
-  transition: padding-left 0.4s var(--ease), background-color 0.4s var(--ease);
+  /* Indented on hover via transform, not padding: padding animation
+     thrashes layout on a long list. */
+  transition: transform 0.35s var(--ease), background-color 0.35s var(--ease);
 }
-.idxrow:hover { padding-left: 0.75rem; background: var(--accent-soft); }
+.idxrow:hover { transform: translateX(0.6rem); background: var(--accent-wash); }
+@media (prefers-reduced-motion: reduce) {
+  .idxrow:hover { transform: none; }
+}
 .idxrow__n { color: var(--accent); }
 .idxrow__t { font-size: var(--t-body); }
 .idxrow__t small {
@@ -838,7 +1001,7 @@ body::after {
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(180deg, var(--rule-strong), var(--accent) 55%, var(--rule-strong));
+  background: var(--rule-weak);
   transform-origin: 50% 0;
   pointer-events: none;
   /* Drawn by default, so a failed script leaves a complete rule, not a gap.
@@ -849,15 +1012,15 @@ body::after {
 .job__node {
   position: absolute;
   left: var(--tl-x);
-  top: -4.5px;
+  top: -5px;
   width: 9px;
   height: 9px;
   margin-left: -4px;
-  border: 1px solid var(--rule-strong);
+  border: 1px solid var(--rule);
   background: var(--paper);
   pointer-events: none;
-  /* Present by default; the motion layer is what makes it arrive. */
-  transform: rotate(45deg) scale(1);
+  /* Square knots, not diamonds: this world has no rotated ornament. */
+  transform: scale(1);
   transition:
     border-color 420ms var(--ease),
     background-color 420ms var(--ease),
@@ -866,7 +1029,7 @@ body::after {
 .job__node.is-live {
   border-color: var(--accent);
   background: var(--accent);
-  box-shadow: 0 0 0 4px var(--paper), 0 0 14px var(--accent-glow);
+  box-shadow: 0 0 0 4px var(--paper);
 }
 @media (max-width: 860px) {
   .timeline__line, .job__node { display: none; }
@@ -875,11 +1038,13 @@ body::after {
   .timeline__line { transform: scaleY(1) !important; }
 }
 
+/* The company is a hierarchy anchor, so it earns weight and size in the
+   text face rather than a bitmap setting too small to resolve. */
 .job__co {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
 }
 .job__when { color: var(--muted); margin-top: 0.35rem; display: block; }
 .job__where { color: var(--muted); font-size: var(--t-sm); }
@@ -928,7 +1093,7 @@ body::after {
 .chip {
   font-size: var(--t-sm);
   padding: 0.18rem 0.6rem 0.24rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-weak);
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 .chip:hover { border-color: var(--accent); color: var(--accent); }
@@ -948,7 +1113,7 @@ body::after {
   .award { grid-template-columns: 4.5rem minmax(0, 1fr); }
   .award__by { grid-column: 2; }
 }
-.award__yr { color: var(--accent); }
+.award__yr { color: var(--accent); font-variant-numeric: tabular-nums; }
 .award__t { font-size: var(--t-body); line-height: 1.35; }
 .award__by { color: var(--muted); font-size: var(--t-sm); line-height: 1.5; }
 .award__t a { text-decoration: none; }
@@ -969,11 +1134,15 @@ body::after {
 /* ---------- 13. Contact ---------- */
 
 .contact { padding-block: clamp(4rem, 3rem + 6vw, 8rem); }
+/* Set in the text face, not the bitmap: this is a sentence the reader must
+   actually read. The bitmap face never carries running copy. */
 .contact__big {
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 1.2rem + 6vw, 6rem);
-  line-height: 0.95;
-  letter-spacing: -0.028em;
+  font-size: clamp(1.75rem, 1.1rem + 2.9vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+  max-width: 20ch;
   margin-bottom: 2rem;
 }
 .contact__big a { text-decoration: none; }
@@ -982,7 +1151,7 @@ body::after {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  border: 1px solid var(--rule-strong);
+  border: 1px solid var(--rule);
   padding: 0.6rem 0.6rem 0.6rem 1rem;
   font-family: var(--font-mono);
   font-size: var(--t-sm);
@@ -1004,26 +1173,57 @@ body::after {
   transition: background-color 0.3s var(--ease);
   flex: none;
 }
-.copybtn:hover { background: var(--accent); color: #fff; }
-.copybtn.is-done { background: #2e9e5b; color: #fff; }
+.copybtn:hover { background: var(--accent); color: var(--accent-ink); }
+.copybtn.is-done { background: #1f7a45; color: #fff; }
 
 .social { display: flex; flex-wrap: wrap; gap: 1.75rem; margin-top: 2.25rem; }
 
 /* ---------- 14. Footer ---------- */
 
 .foot {
-  border-top: 1px solid var(--rule);
-  padding-block: 2rem 2.5rem;
+  border-top: 2px solid var(--rule);
+  padding-block: clamp(2rem, 1.6rem + 1.6vw, 3rem) 2.5rem;
+  margin-top: clamp(2rem, 1.5rem + 2vw, 4rem);
 }
+
+/* The availability note is the reason anyone scrolled this far, so it
+   leads the footer instead of hiding in the fine print. */
+.foot__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  margin-bottom: 1.5rem;
+}
+.foot__say {
+  flex: 1 1 20rem;
+  max-width: 58ch;
+  color: var(--ink-soft);
+  font-size: var(--t-sm);
+}
+
 .foot__in {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem 2rem;
+  gap: 0.75rem 2rem;
   color: var(--muted);
+  margin-top: 1.25rem;
 }
 .foot__in a { text-decoration: none; }
+
+.foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+}
+.foot__links a { transition: color 0.2s var(--ease); }
+.foot__links a:hover { color: var(--accent); }
+
+@media (max-width: 620px) {
+  .foot__in { justify-content: flex-start; gap: 0.6rem 1.25rem; }
+}
 
 /* ---------- 15. Reveal ---------- */
 
@@ -1037,7 +1237,7 @@ body::after {
   filter: none !important;
 }
 .hydration-stalled .timeline__line { transform: scaleY(1) !important; }
-.hydration-stalled .job__node { transform: rotate(45deg) scale(1) !important; }
+.hydration-stalled .job__node { transform: scale(1) !important; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -1054,9 +1254,13 @@ body::after {
 .pagehead { padding-top: clamp(6.5rem, 5rem + 7vw, 9.5rem); padding-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
 .pagehead h1 {
   font-family: var(--font-display);
-  font-size: var(--t-h2);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  font-size: clamp(1.375rem, 1rem + 1.6vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
   margin-top: 0.75rem;
 }
 .back {
@@ -1096,7 +1300,7 @@ body::after {
   background: var(--paper-2);
 }
 .card:hover .card__img { filter: none; }
-.card__t { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.15; }
+.card__t { font-size: 1.1875rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.012em; }
 .card__d { color: var(--muted); font-size: var(--t-sm); line-height: 1.5; }
 /* Pin meta to the bottom so it forms a clean line across uneven cards */
 .card__meta {
@@ -1123,10 +1327,11 @@ body::after {
 .prose p { margin-bottom: 1.1rem; color: var(--ink-soft); }
 .prose img { margin-block: 1.75rem; border: 1px solid var(--rule); }
 .prose h2 {
-  font-family: var(--font-display);
   font-size: var(--t-h3);
+  font-weight: 600;
+  line-height: 1.2;
   margin: 2.5rem 0 1rem;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.015em;
 }
 
 /* ---------- 17. Résumé page ---------- */
@@ -1157,7 +1362,8 @@ body::after {
 
 @media print {
   :root { --paper: #fff; --ink: #000; --ink-soft: #1a1a1a; --muted: #444;
-          --rule: rgba(0,0,0,0.2); --rule-strong: rgba(0,0,0,0.4); --accent: #000; --grain: 0; }
+          --rule: #000; --rule-weak: rgba(0,0,0,0.35); --accent: #000;
+          --accent-ink: #fff; --accent-wash: transparent; --drop: none; --drop-sm: none; }
   .nav, .foot, .prog, .noprint, body::after { display: none !important; }
   [data-reveal], [data-reveal] * { opacity: 1 !important; transform: none !important; filter: none !important; }
   body { font-size: 10.2pt; line-height: 1.45; }
@@ -1171,6 +1377,43 @@ body::after {
 }
 
 /* ---------- 18. Spacing + local utilities ---------- */
+
+/* Touch targets.
+   WCAG 2.5.8 exempts links inline in a sentence, so those keep their
+   natural line box. Every control that stands on its own — masthead mark,
+   link rows, copy button — is raised to the 44px floor instead. */
+.mark { min-height: 2.75rem; }
+.copybtn { min-height: 2.75rem; }
+.entry__title a,
+.social .arrowlink,
+.entry__links .arrowlink,
+.entry__links .lnk,
+.foot__links a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Coarse pointers get extra separation between adjacent link rows so the
+   44px targets never overlap their neighbours. */
+@media (pointer: coarse) {
+  .social { gap: 0.25rem 1.75rem; }
+  .award { padding-block: 1.6rem; }
+  .idxrow { padding-block: 1.25rem; }
+}
+
+/* Available to assistive tech, absent from the visual page. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
 
 .mt-sm  { margin-top: 0.35rem; }
 .mt-md  { margin-top: 0.6rem; }
