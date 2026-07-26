@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://sharmahr.github.io/</loc><priority>1.0</priority></url>
+  <url><loc>https://sharmahr.github.io/resume</loc><priority>0.9</priority></url>
+  <url><loc>https://sharmahr.github.io/archive</loc><priority>0.7</priority></url>
+  <url><loc>https://sharmahr.github.io/work/smart-parking</loc><priority>0.6</priority></url>
+  <url><loc>https://sharmahr.github.io/lab/flappy-bird</loc><priority>0.4</priority></url>
+  <url><loc>https://sharmahr.github.io/lab/smart-rockets</loc><priority>0.4</priority></url>
+  <url><loc>https://sharmahr.github.io/lab/maze-solver</loc><priority>0.4</priority></url>
+  <url><loc>https://sharmahr.github.io/lab/snake</loc><priority>0.4</priority></url>
+  <url><loc>https://sharmahr.github.io/events/robotics-workshop</loc><priority>0.3</priority></url>
+  <url><loc>https://sharmahr.github.io/credentials/sih-2019</loc><priority>0.2</priority></url>
+  <url><loc>https://sharmahr.github.io/credentials/iit-guwahati</loc><priority>0.2</priority></url>
+  <url><loc>https://sharmahr.github.io/credentials/iit-bombay</loc><priority>0.2</priority></url>
+  <url><loc>https://sharmahr.github.io/credentials/vnit</loc><priority>0.2</priority></url>
+</urlset>
