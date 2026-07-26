@@ -28,6 +28,7 @@
      reading as an unlit void. */
   --halo:         radial-gradient(120% 68% at 50% -12%, rgba(232, 102, 58, 0.10) 0%, rgba(232, 102, 58, 0.03) 34%, transparent 68%);
   --img-filter:   brightness(0.86) contrast(1.06);
+  --portrait-filter: saturate(1.08) contrast(1.02) brightness(0.96);
   --shadow:       0 1px 0 rgba(243, 239, 231, 0.04), 0 18px 44px -22px rgba(0, 0, 0, 0.9);
 
   color-scheme: dark;
@@ -80,6 +81,7 @@
   --grain:        0.038;
   --halo:         radial-gradient(120% 68% at 50% -12%, rgba(178, 58, 23, 0.05) 0%, transparent 62%);
   --img-filter:   none;
+  --portrait-filter: saturate(1.04);
   --shadow:       0 1px 0 rgba(18, 17, 15, 0.03), 0 18px 44px -24px rgba(18, 17, 15, 0.35);
   color-scheme: light;
 }
@@ -426,17 +428,26 @@ body::after {
 
 /* The lattice is a technical illustration pinned behind the portrait,
    the way a diagram would sit behind a photo on a contact sheet. */
+/* Portrait and lattice sit side by side: with a square crop there is no
+   longer a tall column for the diagram to hide behind, so it stands as its
+   own figure rather than floating over the text below it. */
 .hero__media {
   position: relative;
   isolation: isolate;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(0.4rem, 0.1rem + 0.8vw, 1rem);
 }
 .lattice {
-  position: absolute;
-  top: 3%;
-  left: 44%;
-  width: 22rem;
-  height: 22rem;
-  max-width: 80vw;
+  /* Second in the row but first in the markup, so the canvas never
+     steals the reading order from the photograph. */
+  order: 1;
+  flex: 0 0 auto;
+  width: 14rem;
+  height: 14rem;
+  aspect-ratio: 1 / 1;
+  /* Runs into the page margin rather than crowding the photograph. */
+  margin-right: -2.5rem;
   z-index: 0;
   cursor: grab;
   touch-action: pan-y;
@@ -452,11 +463,19 @@ body::after {
   letter-spacing: 0.09em;
 }
 @media (max-width: 900px) {
-  .lattice { left: auto; right: -4%; top: -12%; width: 13rem; height: 13rem; }
+  .lattice { width: 11rem; height: 11rem; margin-right: -1.25rem; }
+  .portrait { width: 12rem; }
+}
+/* Decorative only: below this the photograph should have the width. */
+@media (max-width: 720px) {
+  .lattice, .lattice__cap { display: none; }
 }
 
 .portrait {
   position: relative;
+  order: 0;
+  flex: 0 0 auto;
+  width: 15rem;
   max-width: 15rem;
   /* Overlap: the portrait rides up over the rule above it */
   margin-top: clamp(-3.5rem, -2rem - 2vw, 0rem);
@@ -464,10 +483,16 @@ body::after {
 }
 .portrait img {
   width: 100%;
-  filter: grayscale(1) contrast(1.06) var(--img-filter, none);
+  /* The height attribute would otherwise be taken as a fixed height and
+     stretch the crop, so the square is stated here rather than inferred. */
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 25%;
+  filter: var(--portrait-filter, none);
   transition: filter 0.6s var(--ease);
 }
-.portrait:hover img { filter: grayscale(0) contrast(1); }
+.portrait:hover img { filter: saturate(1.16) contrast(1.04) brightness(1.02); }
 .portrait figcaption {
   margin-top: 0.7rem;
   color: var(--muted);
