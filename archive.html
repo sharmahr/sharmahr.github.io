@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive — Hardik Sharma</title>
+<meta name="description" content="Project archive: competition robots, computer-vision builds, genetic-algorithm simulations and playable p5.js games by Hardik Sharma.">
+<meta name="theme-color" content="#f6f4f0">
+<link rel="canonical" href="https://sharmahr.github.io/archive.html">
+<meta property="og:title" content="Archive — Hardik Sharma">
+<meta property="og:description" content="Competition robots, computer-vision builds and playable simulations.">
+<meta property="og:image" content="https://sharmahr.github.io/assets/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var s = localStorage.getItem("hs-theme");
+      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+    } catch (e) {}
+  })();
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="index.html" aria-label="Hardik Sharma, home">H<span>S</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <div class="nav__set">
+        <a class="nav__link" href="index.html#work">Work</a>
+        <a class="nav__link is-active" href="archive.html">Archive</a>
+        <a class="nav__link" href="resume.html">Résumé</a>
+        <a class="nav__link" href="index.html#contact">Contact</a>
+      </div>
+      <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <div class="pagehead">
+    <a class="back mono" href="index.html">
+      <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
+    </a>
+    <h1>Archive</h1>
+    <p class="lead mt-xl">
+      Before the datacenters there were robots. Competition builds, computer-vision
+      experiments and simulations from 2017 onward — most of them still run.
+    </p>
+  </div>
+
+  <!-- Robotics -->
+  <section class="sec--tight">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">01</span>
+      <h2 class="sec__title">Robotics</h2>
+      <hr class="hr">
+      <p class="sec__note">Built for competition, mostly at 3am.</p>
+    </div>
+
+    <div class="cards" data-reveal>
+      <a class="card" href="https://www.youtube.com/watch?v=fKBgzZK45yA" target="_blank" rel="noopener">
+        <img class="card__img" src="assets/images/escalade.jpg" alt="Wall-climbing robot gripping a vertical surface during the Escalade competition">
+        <span class="card__t">Wall-climbing robot</span>
+        <span class="card__d">Built for Escalade at IIT Guwahati: climb a vertical wall and complete tasks against the clock. First place out of 60 teams.</span>
+        <span class="card__meta">2018 · Winner · Video ↗</span>
+      </a>
+
+      <a class="card" href="https://www.youtube.com/watch?v=Q7-LRJBurlQ" target="_blank" rel="noopener">
+        <img class="card__img" src="assets/images/mazesolving.jpg" alt="Maze-solving robot navigating a taped maze">
+        <span class="card__t">Maze-solving robot</span>
+        <span class="card__d">Records every turn on a dry run, then eliminates the dead-end U-turns to compute the shortest path on the second pass. Third at Techfest, IIT Bombay.</span>
+        <span class="card__meta">2018 · C++ · Video ↗</span>
+      </a>
+
+      <a class="card" href="https://www.youtube.com/watch?v=t-L7Ybl-mp4" target="_blank" rel="noopener">
+        <img class="card__img" src="assets/images/towerofhanoi.png" alt="Robotic arm moving discs in a Tower of Hanoi puzzle">
+        <span class="card__t">Tower of Hanoi robot</span>
+        <span class="card__d">A robotic arm that solves the puzzle physically — the recursive solution driving real servos rather than console output.</span>
+        <span class="card__meta">C++ · Video ↗</span>
+      </a>
+
+      <a class="card" href="https://www.youtube.com/watch?v=CvS2zukQTMM" target="_blank" rel="noopener">
+        <img class="card__img" src="assets/images/cnc.jpg" alt="CNC plotter drawing a portrait sketch on paper">
+        <span class="card__t">CNC portrait plotter</span>
+        <span class="card__d">Detects a face in a photograph, reduces it to strokes, and drives a two-axis plotter to draw the sketch on paper.</span>
+        <span class="card__meta">Vision + CNC · Video ↗</span>
+      </a>
+
+      <a class="card" href="https://youtu.be/cruiM_0TyPw" target="_blank" rel="noopener">
+        <img class="card__img" src="assets/images/quad.jpg" alt="Custom-built quadcopter in flight">
+        <span class="card__t">Quadcopter</span>
+        <span class="card__d">Built from the frame up. The starting point for a longer detour into autonomous flight and crop-health monitoring.</span>
+        <span class="card__meta">Hardware · Video ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Vision & software -->
+  <section class="sec--tight">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">02</span>
+      <h2 class="sec__title">Computer vision</h2>
+      <hr class="hr">
+      <p class="sec__note">Cameras pointed at problems.</p>
+    </div>
+
+    <div class="cards" data-reveal>
+      <a class="card" href="projects/software_projects/parkit/parkit.html">
+        <img class="card__img" src="projects/software_projects/parkit/parkit.png" alt="Park It parking availability application interface">
+        <span class="card__t">Park It</span>
+        <span class="card__d">Mask R-CNN over parking-lot camera feeds to find genuinely vacant bays, with an Android app to reserve one before you drive out. Smart India Hackathon finalist.</span>
+        <span class="card__meta">2019 · Mask R-CNN · Write-up</span>
+      </a>
+
+      <a class="card" href="https://www.youtube.com/watch?v=G3Z0gUNIwow" target="_blank" rel="noopener">
+        <img class="card__img" src="projects/software_projects/smartmirror/mirror.png" alt="Smart mirror projecting virtual glasses onto a face">
+        <span class="card__t">Smart mirror</span>
+        <span class="card__d">A mirror that tracks your face and overlays eyewear in real time, so the fitting-room queue becomes optional.</span>
+        <span class="card__meta">Face tracking · Video ↗</span>
+      </a>
+
+      <a class="card" href="https://www.youtube.com/watch?v=-VJ5w3DlcYw" target="_blank" rel="noopener">
+        <img class="card__img" src="projects/software_projects/spaceinvader/spaceinvader.png" alt="Space Invader arcade game controlled by body motion">
+        <span class="card__t">Space Invader, motion-controlled</span>
+        <span class="card__d">The arcade classic rebuilt so the ship follows your body instead of the arrow keys. Playing it counts as light exercise.</span>
+        <span class="card__meta">Processing · Video ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Simulations -->
+  <section class="sec--tight">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">03</span>
+      <h2 class="sec__title">Simulations</h2>
+      <hr class="hr">
+      <p class="sec__note">All four still run in the browser.</p>
+    </div>
+
+    <div class="cards" data-reveal>
+      <a class="card" href="projects/games_and_simulations/Flappy_Bird/flappybird.html">
+        <img class="card__img" src="projects/games_and_simulations/Flappy_Bird/flappybird.png" alt="Flappy Bird clone with multiple AI-controlled birds in flight">
+        <span class="card__t">Neuroevolution of Flappy Bird</span>
+        <span class="card__d">A population of neural networks evolved by genetic algorithm across generations until the birds stop hitting pipes.</span>
+        <span class="card__meta">p5.js · Playable</span>
+      </a>
+
+      <a class="card" href="projects/games_and_simulations/SmartRockets/smartrockets.html">
+        <img class="card__img" src="projects/games_and_simulations/SmartRockets/rocket.png" alt="Smart Rockets genetic algorithm simulation with rockets avoiding an obstacle">
+        <span class="card__t">Smart Rockets</span>
+        <span class="card__d">Rockets encode their thrust sequence as DNA and breed toward the target across generations, learning to steer around the obstacle.</span>
+        <span class="card__meta">Genetic algorithm · Playable</span>
+      </a>
+
+      <a class="card" href="projects/games_and_simulations/MazeSolver/mazesolver.html">
+        <img class="card__img" src="projects/games_and_simulations/MazeSolver/mazesolver.png" alt="Maze solver visualisation showing a shortest path search">
+        <span class="card__t">Maze solver</span>
+        <span class="card__d">Generates a maze, then visualises shortest-path search through it — the textbook graph algorithms made watchable.</span>
+        <span class="card__meta">Pathfinding · Playable</span>
+      </a>
+
+      <a class="card" href="projects/games_and_simulations/SnakeGame/snakegame.html">
+        <img class="card__img" src="projects/games_and_simulations/SnakeGame/snake.png" alt="Classic Snake game rendered in p5.js">
+        <span class="card__t">Snake</span>
+        <span class="card__d">The first game I ever finished. Kept here mostly for sentimental reasons.</span>
+        <span class="card__meta">p5.js · Playable</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Teaching -->
+  <section class="sec--tight">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">04</span>
+      <h2 class="sec__title">Teaching</h2>
+      <hr class="hr">
+    </div>
+
+    <div class="index" data-reveal>
+      <a class="idxrow" href="events/workshop/workshop.html">
+        <span class="idxrow__n mono">01</span>
+        <span class="idxrow__t">Workshop on Processing
+          <small>Ran a hands-on session for my college on creative coding with Processing.</small></span>
+        <span class="idxrow__meta">Jan 2019</span>
+      </a>
+      <a class="idxrow" href="assets/certificates/sih2019.html">
+        <span class="idxrow__n mono">02</span>
+        <span class="idxrow__t">Competition certificates
+          <small>Smart India Hackathon, Escalade, Meshmerize and RoboCup.</small></span>
+        <span class="idxrow__meta">2017 — 2019</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="mono">© <span id="yr">2026</span> Hardik Sharma</p>
+    <p class="mono"><a class="lnk" href="index.html">Home</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>

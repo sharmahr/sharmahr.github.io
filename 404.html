@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Not found — Hardik Sharma</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var s = localStorage.getItem("hs-theme");
+      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+    } catch (e) {}
+  })();
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="/" aria-label="Hardik Sharma, home">H<span>S</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <div class="nav__set">
+        <a class="nav__link" href="/#work">Work</a>
+        <a class="nav__link" href="/archive.html">Archive</a>
+        <a class="nav__link" href="/resume.html">Résumé</a>
+      </div>
+      <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap notfound">
+  <p class="mono acc">Error 404</p>
+  <h1 class="serif notfound__t">
+    This page doesn't<br>exist <span class="it">any more</span>.
+  </h1>
+  <p class="lead mb-4xl">
+    The site was rebuilt in 2026 and a few old URLs went with it.
+    Everything worth keeping is still here.
+  </p>
+  <div class="hero__cta mt-0">
+    <a class="btn btn--solid" href="/">Home</a>
+    <a class="btn" href="/#work">Selected work</a>
+    <a class="btn" href="/archive.html">Archive</a>
+    <a class="btn" href="/resume.html">Résumé</a>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="mono">© <span id="yr">2026</span> Hardik Sharma</p>
+    <p class="mono"><a class="lnk" href="mailto:sharmahardik.mail@gmail.com">sharmahardik.mail@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js" defer></script>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>

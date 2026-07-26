@@ -1,226 +1,615 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-  	<!--Hardik Sharma pesonel portfolio -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142038874-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-      gtag('config', 'UA-142038874-1');
-    </script>
+<title>Hardik Sharma — Software Engineer, Distributed Systems &amp; Cloud Platforms</title>
+<meta name="description" content="Software engineer with 6+ years building distributed systems and cloud infrastructure at Microsoft, Harness and VMware. Vulnerability remediation across 4,000+ datacenters, reserved-instance optimisation, applied AI.">
+<meta name="author" content="Hardik Sharma">
+<meta name="theme-color" content="#f6f4f0">
+<link rel="canonical" href="https://sharmahr.github.io/">
 
-<title>Hardik Sharma</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Hardik Sharma — Software Engineer">
+<meta property="og:description" content="6+ years building distributed systems and cloud infrastructure at Microsoft, Harness and VMware.">
+<meta property="og:url" content="https://sharmahr.github.io/">
+<meta property="og:image" content="https://sharmahr.github.io/assets/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="assets/css/aos.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <!--RICH LINKS-->
-    <meta property="og:title" content="Hardik Sharma" />
-    <meta property="og:url" content="https://sharmahr.github.io" />
-    <meta property="og:image" content="https://github.com/sharmahr/sharmahr.github.io/blob/master/assets/images/Hardik_Sharma.png?raw=true">
-    <meta property="og:type" content="website" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/images/Hardik_Sharma.jpg">
 
-    </head>
-  <body>
-  
-  <div class="site-wrap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
 
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var s = localStorage.getItem("hs-theme");
+      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+    } catch (e) {}
+  })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Hardik Sharma",
+  "url": "https://sharmahr.github.io/",
+  "image": "https://sharmahr.github.io/assets/images/Hardik_Sharma.jpg",
+  "jobTitle": "Software Engineer 2",
+  "email": "mailto:sharmahardik.mail@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
+  "worksFor": { "@type": "Organization", "name": "Microsoft" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Shri Ramdeobaba College of Engineering and Management" },
+  "sameAs": [
+    "https://github.com/sharmahr",
+    "https://www.linkedin.com/in/sharmahr/"
+  ],
+  "knowsAbout": ["Distributed Systems","Cloud Infrastructure","Kubernetes","Java","Python","Applied Machine Learning"]
+}
+</script>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="prog" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="/" aria-label="Hardik Sharma, home">H<span>S</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <div class="nav__set">
+        <a class="nav__link" href="#work">Work</a>
+        <a class="nav__link" href="#experience">Experience</a>
+        <a class="nav__link" href="#toolkit">Toolkit</a>
+        <a class="nav__link" href="#recognition">Recognition</a>
+        <a class="nav__link" href="#contact">Contact</a>
       </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-    <header class="site-navbar py-3" role="banner">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="index.html" class="text-white h2 mb-0">H<span class="text-primary">S</span> </a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>                
-                <li><a href="featuredprojects.html">Featured Projects</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <div class="site-section site-hero">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-10">
-            <span class="d-block mb-3 caption" data-aos="fade-up" data-aos-delay="100">Hello,My name is</span>
-            <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="150">Hardik<br>Sharma</h1>
-            <span class="col-lg-5 mt-5 pl-lg-5" data-aos="fade-up" data-aos-delay="200">I am a full-stack software developer with 4+ years of experience in designing and developing highly scalable microservices using Java, python and GoLang. Currently, I work at VMware where I design and develop web applications that help SMEs to automate their work and reduce toil. My expertise lies in technologies such as Spring Boot, Angular, StackStorm, Java, Python, Golang, Docker, Kubernetes, and Helm. I have a passion for writing clean and efficient code, and I am always eager to learn new technologies and programming languages. I am a team player and enjoy collaborating with others to deliver high-quality software. Connect with me to learn more about my skills and experience.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-<!-- LIST OF COURSES-->
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="site-section-heading">
-              <h2>Projects</h2>
-            </div>
-          </div>
-          <div class="col-lg-5 mt-5 pl-lg-5" data-aos="fade-up" data-aos-delay="200">
-            <p>
-                I've learned a lot from various websites and other platforms therefore I share with you my projects in an attempt to return the favor. 
-            </p>
-          </div>
-        </div> 
-        
-        <div class="row align-items-center speaker">
-            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-              <img src="assets/images/software_logo.png" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-6 ml-auto">
-              <h2 class="text-white mb-4 name" data-aos="fade-right" data-aos-delay="200">Software Projects</h2>
-              <div class="bio pl-lg-5">
-                <p class="mb-4" data-aos="fade-right" data-aos-delay="400">
-                 As a computer science engineer, you are taught various subjects like different programming languages, computer architecture,
-                 theory of computation, operating systems, machine learning etc. Implementing these concepts in real life is what makes a student 
-                 a good engineer. Here are some of my projects.
-                </p>
-                <div class="row" data-aos="fade-right" data-aos-delay="500">
-                  <div class="col-lg-5 mb-3 mb-lg-0"><a href="software.html" class="btn btn-secondary px-4 py-2">View Projects</a></div>              
-                </div>
-              </div>
-            </div>
-          </div>        
-            
-          <div class="row align-items-center speaker">
-              <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2" data-aos="fade" data-aos-delay="100">
-                <img src="assets/images/hardware_logo.png" alt="Image" class="img-fluid">
-              </div>
-              <div class="col-lg-6 ml-auto">
-                <h2 class=" mb-4 name order-lg-1" data-aos="fade-left" data-aos-delay="200">Hardware Projects</h2>
-                <div class="bio pl-lg-5">
-                  <p class="mb-4" data-aos="fade-left" data-aos-delay="400">
-                    I am very passionate about making robots and my passion for robots motivated me to explore various engineering disciplines 
-                    like computer science, mechanical, electronics etc. I share with you my projects so that It can motivate you to build your 
-                    awesome projects and share it to the world.
-                  </p>
-                  <div class="row" data-aos="fade-left" data-aos-delay="500">
-                    <div class="col-lg-5 mb-3 mb-lg-0"><a href="hardware.html" class="btn btn-secondary px-4 py-2">View Projects</a></div>               
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div class="row align-items-center speaker">
-                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
-                  <img src="assets/images/sim_logo.png" alt="Image" class="img-fluid">
-                </div>
-                <div class="col-lg-6 ml-auto">
-                  <h2 class="text-white mb-4 name" data-aos="fade-right" data-aos-delay="200">Simulations And Games</h2>
-                  <div class="bio pl-lg-5">
-                    <p class="mb-4" data-aos="fade-right" data-aos-delay="400">
-                     Since my childhood I was really passionate about games and wondered how are they made. It was also one of the reasons that led 
-                     me to pursue Computer Science and Engineering. I tried to make games using Processing (for desktop) and p5.js instead of any 
-                     ready made game engine because I want to explore the process from scratch. Here are some samples of my work.
-                    </p>
-                    <div class="row" data-aos="fade-right" data-aos-delay="500">
-                      <div class="col-lg-5 mb-3 mb-lg-0"><a href="simulations.html" class="btn btn-secondary px-4 py-2">View Projects</a></div>               
-                    </div>
-                  </div>
-                </div>
-              </div>       
-        
-      </div>
-    </div>
-      
-    <footer class="site-footer">
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">Hardik Sharma</h2>
-              <p>
-               The meaning of my life is to find the answer of ultimate intelligence and perhaps even explain and implement it. 
-              </p>
-            </div>
-            <div class="col-md-3 ml-auto">
-              <h2 class="footer-heading text-uppercase mb-4">Quick Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="featuredprojects.html">Featured Projects</a></li>
-                 <li><a href="events.html">Events</a></li>
-                <li><a href="awards.html">Awards</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="contact.html">Contact</a></li>                
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">Connect with Me</h2>
-              <p>
-                <a href="https://www.linkedin.com/in/hardik-sharma-b8b18a173" target="_blank" class="p-2"><span class="icon-linkedin"></span></a>
-                <a href="https://github.com/sharmahr" target="_blank" class="p-2"><span class="icon-github"></span></a>
-                <a href="https://www.youtube.com/channel/UC8o1UmexzwZ7OXq3BhsP-HA?view_as=subscriber" target="_blank" class="p-2"><span class="icon-youtube"></span></a>
-                <a href="https://www.instagram.com/hardikksharma/" target="_blank" class="p-2"><span class="icon-instagram"></span></a>
-
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            
-              <div class="col-md-12 text-center">
-                <div class="border-top pt-1">
-                <p style="font-size: 10px">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Made with <i class="icon-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    
+      <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </nav>
   </div>
+</header>
 
-  <script src="assets/js/jquery-3.3.1.min.js"></script>
-  <script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="assets/js/jquery-ui.js"></script>
-  <script src="assets/js/popper.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/owl.carousel.min.js"></script>
-  <script src="assets/js/jquery.stellar.min.js"></script>
-  <script src="assets/js/jquery.countdown.min.js"></script>
-  <script src="assets/js/jquery.magnific-popup.min.js"></script>
-  <script src="assets/js/bootstrap-datepicker.min.js"></script>
-  <script src="assets/js/aos.js"></script>
+<main id="main">
 
-  <script src="assets/js/main.js"></script>
-    
-  </body>
+  <!-- ============ Hero ============ -->
+  <section class="hero wrap">
+    <p class="hero__meta mono" data-reveal>
+      <span><span class="dot"></span>Open to senior backend &amp; platform roles</span>
+      <span>Hyderabad, India</span>
+      <span><span data-clock>—</span> IST</span>
+    </p>
+
+    <h1 class="hero__name" data-reveal>Hardik<br>Sharma</h1>
+
+    <div class="hero__rule" data-reveal>
+      <span class="mono">Software Engineer 2 — Microsoft</span>
+      <hr class="hr">
+      <span class="mono muted">Since 2020</span>
+    </div>
+
+    <div class="hero__grid">
+      <div data-reveal>
+        <p class="lead">
+          I build the systems other engineers depend on. At VMware I architected the
+          vulnerability remediation platform that scanned and patched
+          <strong>4,000+ datacenters</strong>. At Harness I cut reserved-instance
+          exchange execution from eight hours to under twenty minutes. At Microsoft
+          I work on contextual personalisation and real-time voice for Bing and OneDrive.
+        </p>
+        <p class="lead mt-lg">
+          Six years of backend, cloud infrastructure and applied&nbsp;AI —
+          mostly <span class="serif it">Java, Python and Kubernetes</span>.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="mailto:sharmahardik.mail@gmail.com?subject=Role%20opportunity">
+            Email me
+          </a>
+          <a class="btn" href="resume.html">Résumé</a>
+          <a class="btn" href="https://github.com/sharmahr" target="_blank" rel="noopener">
+            GitHub
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/sharmahr/" target="_blank" rel="noopener">
+            LinkedIn
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div data-reveal>
+        <figure class="portrait">
+          <img src="assets/images/Hardik_Sharma.jpg" width="512" height="512"
+               alt="Portrait of Hardik Sharma">
+        </figure>
+        <dl class="stack mt-3xl">
+          <div class="stackrow">
+            <dt class="mono">Now</dt>
+            <dd>Software Engineer 2, Microsoft — Frontier Foundry</dd>
+          </div>
+          <div class="stackrow">
+            <dt class="mono">Before</dt>
+            <dd>Harness (Cloud Cost Management) · VMware (Cloud Platform)</dd>
+          </div>
+          <div class="stackrow">
+            <dt class="mono">Focus</dt>
+            <dd>Distributed systems, cloud infrastructure, applied AI</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Impact ============ -->
+  <section class="sec--tight wrap" aria-label="Impact at a glance">
+    <div class="metrics">
+      <div class="metric" data-reveal>
+        <span class="metric__n">4,000<em>+</em></span>
+        <span class="metric__l">Datacenters scanned and patched by the remediation platform I architected at VMware</span>
+      </div>
+      <div class="metric" data-reveal>
+        <span class="metric__n">8h <em>→</em> 20m</span>
+        <span class="metric__l">Reserved-instance exchange execution, after the accelerator I built at Harness</span>
+      </div>
+      <div class="metric" data-reveal>
+        <span class="metric__n">1,500<em>+</em></span>
+        <span class="metric__l">Engineers registered on AlgoRush, the interview-prep platform I build and run</span>
+      </div>
+      <div class="metric" data-reveal>
+        <span class="metric__n">50<em>%</em></span>
+        <span class="metric__l">Cut in mean incident resolution time from the script-recommendation service</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Work ============ -->
+  <section class="sec wrap" id="work">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">01</span>
+      <h2 class="sec__title">Selected work</h2>
+      <hr class="hr">
+      <p class="sec__note">Things I built end to end, and that you can actually look at.</p>
+    </div>
+
+    <article class="entry entry--fig" data-reveal>
+      <div class="entry__rail">
+        <span class="entry__idx mono">01</span>
+        <span class="entry__yr mono">2025 —</span>
+        <span class="mono muted">Solo</span>
+      </div>
+      <div class="entry__body">
+        <h3 class="entry__title">
+          <a class="lnk" href="https://algorush.web.app/" target="_blank" rel="noopener">AlgoRush</a>
+          <span class="badge badge--live">Live</span>
+        </h3>
+        <p class="entry__desc">
+          A coding-interview prep platform for engineers who don't have six months to spare —
+          curated problem sets, customisable practice tracks and structured roadmaps instead
+          of an undifferentiated list of a thousand questions. Built, shipped and operated
+          on my own, from product decisions through to deployment.
+        </p>
+        <div class="outcomes">
+          <span class="outcome"><b>1,500+</b><span>registered engineers</span></span>
+          <span class="outcome"><b>0</b><span>funding, 0 team</span></span>
+        </div>
+        <div class="entry__links">
+          <a class="arrowlink lnk" href="https://algorush.web.app/" target="_blank" rel="noopener">
+            Open AlgoRush
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="plate">
+        <span class="plate__n">1,500+</span>
+        <span class="plate__l">Registered<br>engineers</span>
+      </div>
+    </article>
+
+    <article class="entry entry--fig" data-reveal>
+      <div class="entry__rail">
+        <span class="entry__idx mono">02</span>
+        <span class="entry__yr mono">2019</span>
+        <span class="mono muted">Team lead</span>
+      </div>
+      <div class="entry__body">
+        <h3 class="entry__title">
+          <a class="lnk" href="projects/software_projects/parkit/parkit.html">Smart Parking System</a>
+          <span class="badge">SIH 2019</span>
+        </h3>
+        <p class="entry__desc">
+          India has the world's fourth-largest car market and nowhere to put the cars.
+          This system points a camera at a parking lot, runs Mask R-CNN over the frame to
+          work out which bays are actually empty, and lets drivers reserve one from an
+          Android app before they set off. I led a team of five; it took us to the
+          Smart India Hackathon finals.
+        </p>
+        <div class="outcomes">
+          <span class="outcome"><b>Top 4</b><span>of 314 teams</span></span>
+          <span class="outcome"><b>5</b><span>engineers led</span></span>
+        </div>
+        <div class="tags">
+          <span class="tag">Mask R-CNN</span><span class="tag">Python</span>
+          <span class="tag">OpenCV</span><span class="tag">Android</span>
+        </div>
+        <div class="entry__links">
+          <a class="arrowlink lnk" href="projects/software_projects/parkit/parkit.html">
+            Read the write-up
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <figure class="shot">
+        <img src="projects/software_projects/parkit/roi.png"
+             alt="Mask R-CNN detection overlay marking occupied and vacant parking bays">
+        <figcaption>Occupancy detection, region-of-interest overlay</figcaption>
+      </figure>
+    </article>
+
+    <article class="entry entry--fig" data-reveal>
+      <div class="entry__rail">
+        <span class="entry__idx mono">03</span>
+        <span class="entry__yr mono">2026</span>
+        <span class="mono muted">Open source</span>
+      </div>
+      <div class="entry__body">
+        <h3 class="entry__title">
+          <a class="lnk" href="https://github.com/sharmahr/macstorage-studio" target="_blank" rel="noopener">MacStorage Studio</a>
+          <span class="badge">Swift</span>
+        </h3>
+        <p class="entry__desc">
+          A native macOS disk-analysis app. The scanner runs in an isolated process so a
+          crash mid-walk of the filesystem never takes the UI with it, metadata lives in a
+          local SQLite store, and cleanup goes through Trash rather than <code>unlink</code>.
+          Ships as a signed build through GitHub Actions on every tag.
+        </p>
+        <div class="tags">
+          <span class="tag">Swift</span><span class="tag">SQLite</span>
+          <span class="tag">GitHub Actions</span><span class="tag">macOS</span>
+        </div>
+        <div class="entry__links">
+          <a class="arrowlink lnk" href="https://github.com/sharmahr/macstorage-studio" target="_blank" rel="noopener">
+            Source
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="arrowlink lnk" href="https://github.com/sharmahr/macstorage-studio/releases/latest" target="_blank" rel="noopener">
+            Download build
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="plate">
+        <span class="plate__n">No<br>telemetry</span>
+        <span class="plate__l">Fully offline<br>local SQLite</span>
+      </div>
+    </article>
+
+    <article class="entry entry--fig" data-reveal>
+      <div class="entry__rail">
+        <span class="entry__idx mono">04</span>
+        <span class="entry__yr mono">2026</span>
+        <span class="mono muted">Open source</span>
+      </div>
+      <div class="entry__body">
+        <h3 class="entry__title">
+          <a class="lnk" href="https://github.com/sharmahr/zed-db" target="_blank" rel="noopener">zed-db</a>
+          <span class="badge">From scratch</span>
+        </h3>
+        <p class="entry__desc">
+          A persistent relational database engine written in Python, because the fastest way
+          to understand Postgres is to rebuild a small one. Hand-written SQL parser, B-tree
+          storage with disk persistence, hash and range indexes, inner/left/right/cross joins,
+          aggregates with <code>GROUP BY</code>, and <code>BEGIN/COMMIT/ROLLBACK</code>
+          transactions — with a REPL that reports whether a query took a sequential scan
+          or an index scan.
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">B-tree</span>
+          <span class="tag">Query planner</span><span class="tag">Transactions</span>
+        </div>
+        <div class="entry__links">
+          <a class="arrowlink lnk" href="https://github.com/sharmahr/zed-db" target="_blank" rel="noopener">
+            Source
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="plate">
+        <span class="plate__n">SELECT<br>·JOIN·</span>
+        <span class="plate__l">Parser → planner<br>→ B-tree → disk</span>
+      </div>
+    </article>
+
+    <h3 class="mono muted subhead">Also built</h3>
+    <div class="index">
+      <a class="idxrow" href="https://github.com/sharmahr/High-Level-System-Design" target="_blank" rel="noopener">
+        <span class="idxrow__n mono">05</span>
+        <span class="idxrow__t">High-Level System Design
+          <small>Working notes on scaling, sharding and consistency. 9 stars.</small></span>
+        <span class="idxrow__meta">GitHub ↗</span>
+      </a>
+      <a class="idxrow" href="https://github.com/sharmahr/Low-Level-System-Design" target="_blank" rel="noopener">
+        <span class="idxrow__n mono">06</span>
+        <span class="idxrow__t">Low-Level System Design
+          <small>Design patterns and OO modelling worked through in Java. 5 stars.</small></span>
+        <span class="idxrow__meta">Java · GitHub ↗</span>
+      </a>
+      <a class="idxrow" href="projects/games_and_simulations/Flappy_Bird/flappybird.html">
+        <span class="idxrow__n mono">07</span>
+        <span class="idxrow__t">Neuroevolution of Flappy Bird
+          <small>Neural networks evolved by genetic algorithm until the bird stops dying.</small></span>
+        <span class="idxrow__meta">Playable</span>
+      </a>
+      <a class="idxrow" href="projects/games_and_simulations/SmartRockets/smartrockets.html">
+        <span class="idxrow__n mono">08</span>
+        <span class="idxrow__t">Smart Rockets
+          <small>Genetic algorithm navigating obstacles to a target. 5 stars on GitHub.</small></span>
+        <span class="idxrow__meta">Playable</span>
+      </a>
+      <a class="idxrow" href="archive.html">
+        <span class="idxrow__n mono">09</span>
+        <span class="idxrow__t">Robotics, simulations and the rest
+          <small>Wall-climbing robot, maze solver, CNC portrait plotter, quadcopter, p5.js games.</small></span>
+        <span class="idxrow__meta">Full archive →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ Experience ============ -->
+  <section class="sec wrap" id="experience">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">02</span>
+      <h2 class="sec__title">Experience</h2>
+      <hr class="hr">
+      <p class="sec__note">Six years, three companies, one throughline: infrastructure at scale.</p>
+    </div>
+
+    <article class="job" data-reveal>
+      <div class="entry__rail">
+        <h3 class="job__co">Microsoft</h3>
+        <span class="job__when mono">10/2025 — Present</span>
+        <span class="job__where">Hyderabad, India</span>
+      </div>
+      <div>
+        <p class="job__role">Software Engineer 2</p>
+        <p class="job__team mono mono--sent">Frontier Foundry</p>
+        <ul class="bullets">
+          <li>Built an <b>AI personalisation platform for Bing and OneDrive</b> that adapts wallpapers to season, time of day and contextual signals, making the surface feel responsive to the person using it rather than static.</li>
+          <li>Developed a <b>real-time voice assistant</b> that infers user intent, executes tasks across services and returns conversational responses at low latency.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job" data-reveal>
+      <div class="entry__rail">
+        <h3 class="job__co">Harness</h3>
+        <span class="job__when mono">09/2024 — 06/2025</span>
+        <span class="job__where">Bangalore, India</span>
+      </div>
+      <div>
+        <p class="job__role">Senior Software Engineer</p>
+        <p class="job__team mono mono--sent">Cloud Cost Management</p>
+        <ul class="bullets">
+          <li>Led design and implementation of a <b>seed-based Reserved Instance optimisation workflow</b> that automatically provisions, expands and rebalances commitments while preserving expiration timelines and maximising coverage.</li>
+          <li>Built a transaction execution accelerator for RI exchanges that took end-to-end execution from <b>eight hours to under twenty minutes</b>, through workflow orchestration, resiliency work and parallelised processing.</li>
+          <li>Integrated commitment and cluster optimisation engines to prioritise underutilised Reserved Instances and Savings Plans, reducing wasted cloud spend.</li>
+          <li>Developed a <b>commitment inventory platform</b> giving customers real-time visibility into RIs and Savings Plans across cloud accounts.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job" data-reveal>
+      <div class="entry__rail">
+        <h3 class="job__co">VMware</h3>
+        <span class="job__when mono">07/2020 — 08/2024</span>
+        <span class="job__where">Bangalore, India</span>
+      </div>
+      <div>
+        <p class="job__role">Member of Technical Staff 3</p>
+        <p class="job__team mono mono--sent">VMware Cloud Platform</p>
+        <ul class="bullets">
+          <li>Architected and delivered a <b>vulnerability remediation platform</b> that scanned and patched infrastructure across <b>4,000+ datacenters</b>, cutting operational overhead and shortening security response times.</li>
+          <li>Led development of a <b>distributed fleet execution platform</b> for secure remote execution of automation workflows across thousands of datacenters, improving operational efficiency by <b>over 50%</b>.</li>
+          <li>Built semantic search over operational data using <b>transformer-based models</b>, so engineers could find insights by meaning rather than exact keyword.</li>
+          <li>Developed automated patch orchestration, incident escalation workflows and real-time operational dashboards.</li>
+          <li>Built monitoring and reporting services that automated <b>SLA computation</b> and health tracking across critical infrastructure, removing manual reporting entirely.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="job" data-reveal>
+      <div class="entry__rail">
+        <h3 class="job__co">VMware</h3>
+        <span class="job__when mono">01/2020 — 06/2020</span>
+        <span class="job__where">Bangalore, India</span>
+      </div>
+      <div>
+        <p class="job__role">Software Engineering Intern</p>
+        <p class="job__team mono mono--sent">VMware Cloud Platform</p>
+        <ul class="bullets">
+          <li>Built an intelligent recommendation service matching operational incidents to relevant remediation scripts, cutting <b>mean resolution time by 50%</b>.</li>
+          <li>Developed a cloud-based IDE on <b>Eclipse Che and Theia</b> for infrastructure automation engineers to write, test and deploy scripts in one place.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ Toolkit ============ -->
+  <section class="sec wrap" id="toolkit">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">03</span>
+      <h2 class="sec__title">Toolkit</h2>
+      <hr class="hr">
+      <p class="sec__note">What I reach for, roughly in order of how often.</p>
+    </div>
+
+    <dl class="tools" data-reveal>
+      <div class="toolrow">
+        <dt class="mono">Languages</dt>
+        <dd>
+          <span class="chip">Java</span><span class="chip">Python</span>
+          <span class="chip">TypeScript</span><span class="chip">Swift</span><span class="chip">SQL</span>
+        </dd>
+      </div>
+      <div class="toolrow">
+        <dt class="mono">Backend</dt>
+        <dd>
+          <span class="chip">Spring Boot</span><span class="chip">FastAPI</span><span class="chip">Flask</span>
+          <span class="chip">REST</span><span class="chip">Microservices</span><span class="chip">StackStorm</span>
+        </dd>
+      </div>
+      <div class="toolrow">
+        <dt class="mono">Data</dt>
+        <dd>
+          <span class="chip">PostgreSQL</span><span class="chip">MongoDB</span>
+          <span class="chip">Elasticsearch</span><span class="chip">Transformers</span>
+        </dd>
+      </div>
+      <div class="toolrow">
+        <dt class="mono">Cloud &amp; infra</dt>
+        <dd>
+          <span class="chip">Kubernetes</span><span class="chip">Docker</span><span class="chip">Helm</span>
+          <span class="chip">AWS</span><span class="chip">GCP</span><span class="chip">GitLab CI/CD</span>
+        </dd>
+      </div>
+      <div class="toolrow">
+        <dt class="mono">Frontend</dt>
+        <dd><span class="chip">Angular</span><span class="chip">React</span><span class="chip">HTML/CSS</span></dd>
+      </div>
+      <div class="toolrow">
+        <dt class="mono">Practice</dt>
+        <dd>
+          <span class="chip">Agile</span><span class="chip">Scrum</span>
+          <span class="chip">TDD</span><span class="chip">Mentoring</span>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============ Recognition ============ -->
+  <section class="sec wrap" id="recognition">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">04</span>
+      <h2 class="sec__title">Recognition</h2>
+      <hr class="hr">
+      <p class="sec__note">A robotics habit that never quite wore off.</p>
+    </div>
+
+    <div class="awards" data-reveal>
+      <div class="award">
+        <span class="award__yr mono">2021</span>
+        <p class="award__t">Exceptional Mentorship Award</p>
+        <p class="award__by">VMware — for mentoring the winning team at VMware Bootcamp 2021.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2021</span>
+        <p class="award__t">Spot Award</p>
+        <p class="award__by">VMware — for scanning and patching the fleet during the Log4Shell response.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2021</span>
+        <p class="award__t">At Our Best Award</p>
+        <p class="award__by">VMware — for building the automated SLA service.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2019</span>
+        <p class="award__t"><a class="lnk" href="assets/certificates/sih2019.html">Smart India Hackathon — finalist</a></p>
+        <p class="award__by">Government of India — top 4 of 314 teams, leading a team of five with the Smart Parking System.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2018</span>
+        <p class="award__t"><a class="lnk" href="assets/certificates/iitguwahati.html">Winner, Escalade</a></p>
+        <p class="award__by">IIT Guwahati — first of 60 teams, wall-climbing robot.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2018</span>
+        <p class="award__t"><a class="lnk" href="assets/certificates/vnit.html">Best Innovation Award, RoboCup</a></p>
+        <p class="award__by">Axis'18, VNIT Nagpur — among 120 teams.</p>
+      </div>
+      <div class="award">
+        <span class="award__yr mono">2018</span>
+        <p class="award__t"><a class="lnk" href="assets/certificates/iitbombay.html">Third place, Meshmerize</a></p>
+        <p class="award__by">Techfest, IIT Bombay — maze-solving robot, 314 teams.</p>
+      </div>
+    </div>
+
+    <div class="rail edu" data-reveal>
+      <p class="mono muted">Education</p>
+      <div>
+        <p class="edu__deg">
+          Bachelor of Engineering, Computer Science &amp; Engineering
+        </p>
+        <p class="edu__meta">
+          Shri Ramdeobaba College of Engineering and Management, Nagpur ·
+          2016–2020 · GPA 8.86/10
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section class="contact wrap" id="contact">
+    <div class="sec__head" data-reveal>
+      <span class="sec__num mono">05</span>
+      <h2 class="sec__title">Contact</h2>
+      <hr class="hr">
+    </div>
+
+    <p class="contact__big" data-reveal>
+      Open to senior backend,<br>
+      platform and <span class="it acc">infrastructure</span> roles.
+    </p>
+
+    <div data-reveal>
+      <p class="lead mb-3xl">
+        If you're hiring for systems that have to stay up, I'd like to hear about it.
+        I read every email.
+      </p>
+
+      <div class="copyfield">
+        <span>sharmahardik.mail@gmail.com</span>
+        <button class="copybtn" type="button" data-copy="sharmahardik.mail@gmail.com">Copy</button>
+      </div>
+
+      <div class="social">
+        <a class="arrowlink lnk lnk--on" href="mailto:sharmahardik.mail@gmail.com">Email</a>
+        <a class="arrowlink lnk" href="https://www.linkedin.com/in/sharmahr/" target="_blank" rel="noopener">
+          LinkedIn
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="arrowlink lnk" href="https://github.com/sharmahr" target="_blank" rel="noopener">
+          GitHub
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="arrowlink lnk" href="resume.html">Résumé</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="mono">© <span id="yr">2026</span> Hardik Sharma</p>
+    <p class="mono mono--sent">Hyderabad · <span data-clock>—</span> IST</p>
+    <p class="mono"><a class="lnk" href="archive.html">Archive</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
 </html>

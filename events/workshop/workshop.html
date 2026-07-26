@@ -1,190 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!--Hardik Sharma pesonel portfolio -->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142038874-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Processing workshop — Hardik Sharma</title>
+<meta name="description" content="A three-hour Processing workshop I ran for 61 computer science students at RCOEM, from first shapes to a working brick-breaker game.">
+<meta name="theme-color" content="#f6f4f0">
+<link rel="canonical" href="https://sharmahr.github.io/events/workshop/workshop.html">
+<meta property="og:title" content="Processing workshop — Hardik Sharma">
+<meta property="og:description" content="A three-hour Processing workshop I ran for 61 computer science students at RCOEM, from first shapes to a working brick-breaker game.">
+<meta property="og:image" content="https://sharmahr.github.io/assets/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
 
-      gtag('config', 'UA-142038874-1');
-    </script>
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../../assets/css/site.css">
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var s = localStorage.getItem("hs-theme");
+      var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", s || (d ? "dark" : "light"));
+    } catch (e) {}
+  })();
+</script>
+</head>
 
-<title>Hardik Sharma</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/fonts/icomoon/style.css">
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../../assets/css/jquery-ui.css">
-    <link rel="stylesheet" href="../../assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="../../assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="../../assets/fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="../../assets/css/aos.css">
-
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <!--RICH LINKS-->
-    <meta property="og:title" content="Hardik Sharma" />
-    <meta property="og:url" content="https://sharmahr.github.io" />
-    <meta property="og:image" content="https://github.com/sharmahr/sharmahr.github.io/blob/master/assets/images/Hardik_Sharma.png?raw=true">
-    <meta property="og:type" content="website" />
-
-    </head>
-
-    <body>
-  
-  <div class="site-wrap">
-
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="../../index.html" aria-label="Hardik Sharma, home">H<span>S</span></a>
+    <nav class="nav__links" aria-label="Sections">
+      <div class="nav__set">
+        <a class="nav__link" href="../../index.html#work">Work</a>
+        <a class="nav__link is-active" href="../../archive.html">Archive</a>
+        <a class="nav__link" href="../../resume.html">Résumé</a>
+        <a class="nav__link" href="../../index.html#contact">Contact</a>
       </div>
-      <div class="site-mobile-menu-body"></div>
-    </div>
-    
-    <header class="site-navbar py-3" role="banner">
-      <div class="container-fluid">
-        <div class="row align-items-center">
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0"><a href="../../index.html" class="text-white h2 mb-0">H<span class="text-primary">S</span> </a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
-                <li class="active"><a href="../../index.html">Home</a></li>
-                <li><a href="../../about.html">About Me</a></li>                
-                <li><a href="../../featuredprojects.html">Featured Projects</a></li>
-                <li><a href="../../events.html">Events</a></li>
-                <li><a href="../../awards.html">Awards</a></li>
-                <li><a href="../../resume.html">Resume</a></li>
-                <li><a href="../../contact.html">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-          </div>
-        </div>
-      </div>
-    </header>
+      <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch colour theme">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"></circle>
+          <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
 
-    <div class="site-section site-hero inner">
-        <div class="container">
-          <div class="row align-items-center">
-              <div class="col-md-10">
-                <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="100">Workshop</h1>
-                </div>                 
-          </div>
-        </div>
-      </div>
-
-    <div class="site-section">
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-lg-10">
-              <div class="site-section-heading" data-aos="fade-up">
-                <h2>Introduction To Processing - Coding is fun!! </h2>
-              </div>
-            </div>          
-          </div>
-  
-          <div class="row mb-5">         
-            
-            <div class="col-md-12 col-lg-10 mb-5 mb-lg-0 blog-entry" data-aos="fade-up" data-aos-delay="400">
-              
-                <img src="workshop.png" alt="Image" class="img-fluid"> 
-             
-              <p class="text-white">
-                  In my winter vacations I started learning Processing (not image procesing xD). Processing is an open source graphics library 
-                  and integrated developement environment for media art, visual arts etc. It is so amazing that I decided to teach the students 
-                  of my college about it.I was soo excited about it. 
-                </p><p class="text-white">    
-                  I took permission from my Professor and Head Of The Department to conduct workshop on Introduction to Processing. They all agreed and gave me a permission to conduct a 3 hour long workshop for 2nd, 3rd and 4th year students in the Computer Science branch Event 
-                  named Polaris. Seventy seven students registered through google form, out of which sixty one students actually attended the workshop.
-              </p><p class="text-white">
-                  I started off with explaining what processing is. Basically processing is an open source graphical library and integrated development environment (IDE)/playground built for electronic arts, new media art, and visual design communities ith the purpose of teaching non-programmer the fundamentals of computer programming in a visual context. It uses java language, with additional simplification.
-                  I taught them the basic syntaxes, functions, creating a window, drawing various shapes like cirlces, rectangles, polygons, changing background colous, object colours, etc. I also taught them basics of computer graphics like line drawing algorightms, polygon drawing algorithms, 2 transformations etc. 
-              </p><p class="text-white">    
-                 Then I told the participants to create whatever they like using these basic commands. I gave 20 minutes to them so that they can come up with beautiful ideas. I believe that students learn more when they are set free to think. The response from the participants was overwhelming as they really got into their creative zone and surprised the others. They made beautiful art pieces with only few lines of code which further motivated me to teach them some advanced concepts like creating physics in their sketches. I taught them how to make a bouncing ball and then brick breaker game using it.
-              </p><p class="text-white">
-                  The workshop ended with the participants having a newly found interest in an altogether different domain.</p>
-              </p>
-                
-              </div>
-  
-          </div>        
-        </div>
-      </div>
-
-    
-      
-    <footer class="site-footer">
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">Hardik Sharma</h2>
-              <p>
-               The meaning of my life is to find the answer of ultimate intelligence and perhaps even explain and implement it. 
-              </p>
-            </div>
-            <div class="col-md-3 ml-auto">
-              <h2 class="footer-heading text-uppercase mb-4">Quick Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="../../about.html">About Me</a></li>
-                <li><a href="../../featuredprojects.html">Featured Projects</a></li>
-                 <li><a href="../../events.html">Events</a></li>
-                <li><a href="../../awards.html">Awards</a></li>
-                <li><a href="../../resume.html">Resume</a></li>
-                <li><a href="../../contact.html">Contact</a></li>                
-              </ul>
-            </div>
-            <div class="col-md-4">
-              <h2 class="footer-heading text-uppercase mb-4">Connect with Me</h2>
-              <p>
-                <a href="https://www.linkedin.com/in/hardik-sharma-b8b18a173" target="_blank" class="p-2"><span class="icon-linkedin"></span></a>
-                <a href="https://github.com/sharmahr" target="_blank" class="p-2"><span class="icon-github"></span></a>
-                <a href="https://www.youtube.com/channel/UC8o1UmexzwZ7OXq3BhsP-HA?view_as=subscriber" target="_blank" class="p-2"><span class="icon-youtube"></span></a>
-                <a href="https://www.instagram.com/hardikksharma/" target="_blank" class="p-2"><span class="icon-instagram"></span></a>
-
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            
-              <div class="col-md-12 text-center">
-                <div class="border-top pt-1">
-                <p style="font-size: 10px">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Made with <i class="icon-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    
+<main id="main" class="wrap">
+  <div class="pagehead">
+    <a class="back mono" href="../../archive.html">
+      <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M7.5 2.5 4 6l3.5 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Archive
+    </a>
+    <h1>Introduction to Processing</h1>
+    <p class="mono muted mt-note">Polaris, RCOEM · 4 January 2019 · 61 attendees</p>
   </div>
 
-  <script src="../../assets/js/jquery-3.3.1.min.js"></script>
-  <script src="../../assets/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="../../assets/js/jquery-ui.js"></script>
-  <script src="../../assets/js/popper.min.js"></script>
-  <script src="../../assets/js/bootstrap.min.js"></script>
-  <script src="../../assets/js/owl.carousel.min.js"></script>
-  <script src="../../assets/js/jquery.stellar.min.js"></script>
-  <script src="../../assets/js/jquery.countdown.min.js"></script>
-  <script src="../../assets/js/jquery.magnific-popup.min.js"></script>
-  <script src="../../assets/js/bootstrap-datepicker.min.js"></script>
-  <script src="../../assets/js/aos.js"></script>
+  <div class="metrics gap-b">
+    <div class="metric"><span class="metric__n">77</span><span class="metric__l">Students registered through the sign-up form</span></div>
+    <div class="metric"><span class="metric__n">61</span><span class="metric__l">Actually turned up on the day</span></div>
+    <div class="metric"><span class="metric__n">3 hrs</span><span class="metric__l">From first shape to a working brick-breaker</span></div>
+    <div class="metric"><span class="metric__n">20 min</span><span class="metric__l">Set aside for them to build whatever they wanted</span></div>
+  </div>
 
-  <script src="../../assets/js/main.js"></script>
-    
-  </body>
+  <div class="rail band">
+    <p class="mono muted">Why</p>
+    <div class="prose">
+      <p>
+        Over a winter break I started learning Processing — the open-source graphics library
+        and IDE built for artists and designers, which runs on Java with most of the
+        ceremony stripped out. It was good enough fun that I wanted to hand it to other
+        people.
+      </p>
+      <p>
+        I asked my professor and the head of department for a slot, and got three hours with
+        second-, third- and fourth-year computer science students as part of Polaris.
+        Seventy-seven registered; sixty-one showed up.
+      </p>
+      <img src="workshop.png" alt="Students attending the Processing workshop in a college computer lab">
+    </div>
+  </div>
+
+  <div class="rail band band--boxed">
+    <p class="mono muted">What we covered</p>
+    <div class="prose">
+      <p>
+        We started from the bottom: opening a window, drawing circles, rectangles and
+        polygons, and setting background and fill colours. From there into the graphics
+        underneath — line-drawing algorithms, polygon-drawing algorithms and 2D
+        transformations.
+      </p>
+      <p>
+        Then I stopped teaching and gave them twenty minutes to make anything they liked.
+        That was the best part of the day. Students learn more when they are set loose, and
+        the room produced genuinely good work out of a handful of primitives — which made a
+        natural excuse to push further into motion and physics.
+      </p>
+      <p>
+        We finished by building a bouncing ball, then turning it into a brick-breaker game.
+        Several people left interested in a domain they had not considered that morning,
+        which was the entire objective.
+      </p>
+    </div>
+  </div>
+
+  <div class="rail band band--open">
+    <p class="mono muted">Related</p>
+    <p><a class="arrowlink lnk" href="../../archive.html">Simulations and games built with p5.js
+      <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 9.5 9.5 2.5M4 2.5h5.5V8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a></p>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="mono">© <span id="yr">2026</span> Hardik Sharma</p>
+    <p class="mono"><a class="lnk" href="../../archive.html">Archive</a></p>
+  </div>
+</footer>
+
+<script src="../../assets/js/site.js" defer></script>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
 </html>
