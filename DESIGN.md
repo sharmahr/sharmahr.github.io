@@ -1,127 +1,97 @@
 # Design
 
-<!-- impeccable:design-schema 1 -->
+## Direction: the invisible, made visible
 
-## Visual World
+A software engineer's working world, expressed as a considered editorial
+portfolio. The central object is an original exploded system: intelligence,
+orchestration, and infrastructure. It is a model of how the engineer thinks,
+not a claim about a proprietary architecture or a live telemetry dashboard.
 
-**Emigre bitmap type specimen.** The page is a specimen sheet for one
-engineer. Coarse pixel letterforms set proudly at poster scale, dense grotesk
-text beneath them, halftone and dot-matrix treated as legitimate surfaces
-rather than as texture-decoration. Low resolution is the aesthetic, not an
-apology: the display face never antialiases, and it scales only in whole-pixel
-multiples.
+This replaces the bitmap specimen direction. Typography, honest project
+evidence, and the three-dimensional system carry the identity. No preloader,
+scroll hijacking, cursor replacement, autoplay video, or decorative WebGL.
 
-This world replaces the previous one (warm near-black paper, Instrument Serif
-display, burnt-orange accent, and a short-lived azure/violet glass variant).
-That look is anti-reference now, not authority. Nothing gradient-filled,
-glass-blurred or glow-shadowed survives.
+## Palette and type
 
-### Why it carries the product
+| Role | Graphite (default) | Daylight |
+| --- | --- | --- |
+| Background | `#121510` | `#f1f2eb` |
+| Raised surface | `#1b2017` | `#e5e9dc` |
+| Text | `#eff1e9` | `#1b2415` |
+| Secondary text | `#bdc3b5` | `#4d5745` |
+| Muted text | `#abb59e` | `#59664c` |
+| Rule | `#353d2e` | `#c5cdb8` |
+| Accent | `#d2ef8a` | `#476424` |
 
-A specimen exists to prove one thing at many scales — which is exactly the
-claim being made here: the same engineer at intern scale and at 4,000-datacenter
-scale. The specimen's native habit of repeating one form at 72 / 48 / 24 / 16 /
-8 px becomes the site's signature move, applied to real career figures.
+Geist carries display, body, and interface text. Geist Mono is reserved for
+indices, dates, and diagram annotations. Both variable fonts are self-hosted
+as Latin WOFF2 subsets; their SIL Open Font Licenses accompany the files.
+Employer attributions use a 12px minimum and at least 4.5:1 contrast. The
+working toolkit and dates remain readable at mobile sizes.
 
-## Light and Dark
+The default theme is an art-direction choice. The visitor can switch themes;
+the document head applies the saved choice before rendering.
 
-Picked from the use scene, not the category: a recruiter on a laptop or phone,
-mid-morning, in an office or by a window, between other candidate reviews.
-Daylight reading wants ink on paper.
+## Composition
 
-- **Default: newsprint.** `#F5F3EC` stock, rich black ink.
-- **Toggle: ink.** Rich black stock, newsprint ink — the same specimen printed
-  as a negative. Both are first-class; neither is a fallback.
+- A quiet, persistent masthead with conventional links and a contact action.
+- A large, left-aligned editorial headline paired with a purposeful original
+  system sculpture. Text and actions never depend on the canvas.
+- An attributed outcome strip, followed by four staggered project studies.
+- Native disclosure rows for career depth without a wall of text.
+- The real portrait and a working toolkit, then a distinct, lighter playground.
+- Factual recognition with direct certificate links.
+- A large contact invitation, visible email address, copy feedback, and a
+  restrained signature footer.
 
-## Color
+Project illustrations use their own bounded material palette. AlgoRush shows
+the actual live product. Park It uses the original annotated training image.
+The storage and database illustrations are explicitly conceptual studies,
+not fabricated application screenshots. The storage study depicts the real
+SwiftUI/ScannerClient, isolated ScannerWorker, and local SQLite relationship.
+The hero's frame defines the study's bounds. On tall desktop viewports, the
+experience introduction and portrait stay in view beside the longer content.
 
-Strategy: **Restrained** — newsprint and rich black carry the surface, one
-synthetic accent does all the signalling.
+## Motion and interaction
 
-| Role | Newsprint | Ink |
-|---|---|---|
-| Stock | `#f5f3ec` | `#0a0a0a` |
-| Stock, second | `#eae7dc` | `#141413` |
-| Ink | `#0a0a0a` | `#f5f3ec` |
-| Ink, secondary | `#33322d` | `#c9c6ba` |
-| Ink, muted | `#6b6a61` | `#8b8980` |
-| Rule | `#0a0a0a` at 100% — rules are printed, not hinted |
-| Accent | `#e8452a` | `#ff5a3c` |
+Standard controls use 160-250ms transitions with
+`cubic-bezier(0.22, 1, 0.36, 1)`. Hover motion is restricted to fine pointers.
+Press feedback is small and immediate. Scroll entrances move approximately
+20px, once, without delaying access to content.
 
-The accent is a spot ink. It marks exactly three things: the live availability
-state, the primary action, and the active navigation item. It is never a
-background wash and never a gradient.
+`Reveal` leaves server-rendered content visible. Only off-screen elements are
+enrolled after hydration; reduced-motion and hydration-failure paths release
+all text immediately.
 
-## Typography
+The original renderer in `src/lib/system-renderer.js` projects authored
+three-dimensional geometry onto Canvas 2D. It caps rendering at 30fps and
+device pixel ratio at 1.75. It cancels animation frames off screen, in hidden
+tabs, and when paused. Reduced motion disables drift and pointer tracking;
+assembly controls still work. A static SVG is the first-render and
+no-JavaScript alternative.
 
-- **Display — `Silkscreen`.** Bitmap, uppercase, poster scale only. Never below
-  1.5rem, never for running text, `-webkit-font-smoothing: none` so pixels stay
-  pixels. Tracking is positive, because bitmap faces set tight turn to mud.
-  Its whole remit is identity: the hero name, plate titles, page titles and the
-  masthead mark. Nothing else.
-- **Text — `Geist`.** Dense neo-grotesk for every paragraph, label and control.
-  Body measure 62–70ch.
-- **Data — `Geist Mono`.** Every figure and every piece of measurement: the
-  impact-ladder numerals, work outcomes, dates, durations, coordinates, counts,
-  the clock. Tabular figures throughout. Used for measurement, never as a
-  costume for "technical".
+## Accessibility and performance
 
-The bitmap floor is enforced in code by `--t-bitmap-min: 1.5rem`; every
-`Silkscreen` rule clamps against it. Anything that would fall below the floor
-(plate indices, years, entry numbers, company names) takes `Geist Mono` or
-weighted `Geist` instead — an 8px pixel grid loses its counters under roughly
-24px, so a smaller bitmap setting is unreadable, not smaller.
+Native links and buttons, visible keyboard focus, an explicit skip link, and
+semantic heading order. Anchor navigation moves focus to the destination.
+The mobile menu closes on navigation, Escape, or outside interaction; Escape
+returns focus to the trigger. Important controls have at least 44px targets.
 
-**Figures are never set in the bitmap face at any size.** Silkscreen has no
-legible `%`, its `4` closes to a blob, and `8h → 20m` turns to mush, so the
-size ladder sets its numerals in `Geist Mono` 600. The ladder's idea is intact
-because the *size step* encodes magnitude, not the face.
+Email remains visible and clickable even if clipboard access fails. Copy
+success and refusal are both announced.
 
-Instrument Serif is removed from the project.
+All existing routes remain prerendered for GitHub Pages. Legacy redirects,
+certificates, the printable resume, and playable labs are retained.
+Hydration is deferred until the complete document has been parsed: the SSG
+router data and build hash are emitted after the page markup. Legacy
+redirects target directory URLs with trailing slashes to avoid alias loops.
+The large p5 dependency is loaded only on experiment routes. The home-page
+sculpture is a small dynamic import with no textures, model downloads, or
+third-party requests. Project imagery and the portrait load lazily.
 
-## Material and Composition
+## Content invariant
 
-- **Square.** `border-radius: 0` everywhere. The one exception is the theme
-  toggle, which is a printer's registration mark and is therefore a circle.
-- **Printed rules.** 1px and 2px solid ink. No low-opacity hairlines, no
-  `rgba` fog.
-- **Hard offset shadow.** `4px 4px 0 var(--ink)` on raised/active elements.
-  Never a blurred shadow, never a colored halo.
-- **Halftone and dot-matrix** as surfaces: a 60lpi dot field replaces the old
-  film-grain overlay, and a 10×10 dot matrix fills plate margins and the
-  portrait's backing.
-- **Numbered plates.** Sections are `01 / 02 / 03` specimen plates. The
-  specimen form earns section numbers that a generic page would not.
-- **Size ladder.** The signature component: one figure repeated at descending
-  sizes with its px label, exactly as a type specimen ranks one glyph.
-
-## Motion
-
-One authored moment, not an effect on every section: the hero's size ladder
-resolves from its smallest step to its largest on load, in whole-pixel jumps
-rather than a smooth tween, because the world does not antialias. Everything
-else is a state change — hard offset appears, accent fills, rule thickens.
-All of it is skipped under `prefers-reduced-motion`.
-
-## Responsive
-
-- Breakpoints: 1180, 900, 720, 560, 400.
-- Display type is capped so `HARDIK` never overflows 320px; the ladder drops
-  steps rather than shrinking below legibility. Verified at 320/390/768/1440
-  with zero horizontal overflow.
-- Plates stack to one column at 860; the metadata rail collapses above content.
-- The `Fig. 1` lattice is decorative and fixed-size, so it is dropped below 900
-  where it has no plate margin to sit in; the photograph takes the width.
-- **Navigation is never removed.** Below 900 the horizontal plate set becomes an
-  `Index` disclosure listing the numbered plates at ≥52px rows. It closes on
-  navigation, on `Escape`, and on pointer-down outside.
-- Every standalone touch target ≥44px, including the masthead mark and the theme
-  toggle, whose 2rem registration mark is centred inside a 44px hit area. Links
-  inline in a sentence keep their natural line box per WCAG 2.5.8, and coarse
-  pointers get extra row separation instead.
-
-## Bans carried from the craft floor
-
-Gradient text, decorative glass and blur, colored border-left rules above 1px,
-soft-shadowed rounded rectangles, monospace as costume, and eyebrow pills on
-every section.
+Career facts and project summaries live in `src/data/site.js`. Outcomes
+remain attributed to their employer or independent project. Do not add
+testimonials, clients, awards, performance claims, or adoption figures
+without evidence. Keep the voice plain and specific.

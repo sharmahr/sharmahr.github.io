@@ -41,22 +41,27 @@ const REDIRECTS = {
   "/projects/games_and_simulations/SnakeGame/snakegame.html": "/lab/snake"
 };
 
-const stub = (target) => `<!DOCTYPE html>
+const stub = (target) => {
+  /* Static hosts may resolve /resume to the old resume.html before the
+     directory. A trailing slash avoids redirecting that stub into itself. */
+  const destination = target.startsWith("/#") || target.endsWith("/") ? target : `${target}/`;
+  return `<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<link rel="canonical" href="${ORIGIN}${target}">
-<meta http-equiv="refresh" content="0; url=${target}">
+<link rel="canonical" href="${ORIGIN}${destination}">
+<meta http-equiv="refresh" content="0; url=${destination}">
 <title>Moved — Hardik Sharma</title>
 </head>
 <body>
-<p>This page has moved to <a href="${target}">${ORIGIN}${target}</a>.</p>
-<script>location.replace(${JSON.stringify(target)});</script>
+<p>This page has moved to <a href="${destination}">${ORIGIN}${destination}</a>.</p>
+<script>location.replace(${JSON.stringify(destination)});</script>
 </body>
 </html>
 `;
+};
 
 const exists = (p) =>
   access(p).then(

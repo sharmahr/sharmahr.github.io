@@ -17,7 +17,8 @@ export default defineConfig({
     }
   },
   ssgOptions: {
-    script: "async",
+    // The router hydration data and SSG build hash are emitted after the HTML.
+    script: "defer",
     formatting: "minify",
     dirStyle: "nested",
     crittersOptions: false

@@ -1,46 +1,32 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { SNAP } from "../lib/motion.js";
+import { useEffect, useRef, useState } from "react";
 
 export default function CopyField({ value }) {
-  const [done, setDone] = useState(false);
+  const [status, setStatus] = useState("idle");
   const timer = useRef(null);
-
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  const copy = useCallback(async () => {
-    try {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(value);
-      } else {
-        const ta = document.createElement("textarea");
-        ta.value = value;
-        ta.style.position = "fixed";
-        ta.style.opacity = "0";
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
-      setDone(true);
-      timer.current = setTimeout(() => setDone(false), 1800);
-    } catch {
-      /* Clipboard refused; the address is right there to select by hand. */
+  async function copy() {
+    clearTimeout(timer.current);
+    if (!navigator.clipboard || !window.isSecureContext) {
+      setStatus("error");
+      return;
     }
-  }, [value]);
+    try {
+      await navigator.clipboard.writeText(value);
+      setStatus("done");
+      timer.current = setTimeout(() => setStatus("idle"), 2400);
+    } catch {
+      setStatus("error");
+    }
+  }
 
   return (
     <div className="copyfield">
-      <span>{value}</span>
-      <motion.button
-        className={`copybtn${done ? " is-done" : ""}`}
-        type="button"
-        onClick={copy}
-        whileTap={{ scale: 0.96 }}
-        transition={SNAP}
-      >
-        {done ? "Copied" : "Copy"}
-      </motion.button>
+      <a href={`mailto:${value}`}>{value}</a>
+      <button className={`copybtn${status === "done" ? " is-done" : ""}`} type="button" onClick={copy} aria-label={status === "done" ? "Email address copied" : "Copy email address"}>
+        {status === "done" ? <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m4 10 4 4 8-8" stroke="currentColor" strokeWidth="1.5" /></svg> : <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="9" height="10" rx="1" stroke="currentColor" /><path d="M12 7V3H3v10h4" stroke="currentColor" /></svg>}
+      </button>
+      <span className={`copyfield__status${status === "error" ? " is-error" : ""}`} role="status">{status === "error" ? "Copy unavailable. Select the email address, or tap it to send a message." : status === "done" ? "Copied to clipboard." : ""}</span>
     </div>
   );
 }

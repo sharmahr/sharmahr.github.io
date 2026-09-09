@@ -65,6 +65,53 @@ export const EXPERIENCE = [
   }
 ];
 
+export const PROJECTS = [
+  {
+    id: "algorush",
+    title: "AlgoRush",
+    category: "Product engineering",
+    description: "From scattered interview prep to a clear path forward. A platform I designed, built and operate solo.",
+    result: "1,500+ registered engineers",
+    tags: ["Full-stack", "Independent product"],
+    href: "https://algorush.web.app/",
+    external: true,
+    action: "Visit AlgoRush"
+  },
+  {
+    id: "macstorage",
+    title: "MacStorage Studio",
+    category: "Native software",
+    description: "Making disk space make sense. A native macOS app with an isolated scanner, local metadata and safe cleanup.",
+    result: "Local-first. Built for macOS.",
+    tags: ["Swift", "SQLite", "macOS"],
+    href: "https://github.com/sharmahr/macstorage-studio",
+    external: true,
+    action: "View MacStorage Studio source"
+  },
+  {
+    id: "zed",
+    title: "zed-db",
+    category: "Systems from scratch",
+    description: "What actually happens after SELECT? A relational database built from first principles, down to the B-tree.",
+    result: "Parser. Storage. Transactions.",
+    tags: ["Python", "Database internals"],
+    href: "https://github.com/sharmahr/zed-db",
+    external: true,
+    action: "View zed-db source"
+  },
+  {
+    id: "parking",
+    title: "Park It",
+    category: "Applied computer vision",
+    description: "A camera, a model, one less lap around the block. Real-time parking availability with an Android booking app.",
+    result: "Top 4 of 314 teams / SIH 2019",
+    tags: ["Mask R-CNN", "Python", "Android"],
+    href: "/work/smart-parking",
+    external: false,
+    action: "Read the Park It case study"
+  }
+];
+
 export const ALSO_BUILT = [
   {
     n: "03",

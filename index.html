@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="Hardik Sharma">
-<meta name="theme-color" content="#f5f3ec">
+<meta name="theme-color" content="#121510">
 
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/images/Hardik_Sharma.jpeg">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Silkscreen:wght@400;700&display=swap">
+<link rel="preload" href="/assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
 
 <script>
   (function () {
     var d = document.documentElement;
     d.classList.add("js");
     try {
-      /* Newsprint is the design. The specimen prints as a negative only
-         when the visitor explicitly asks for it. */
       var s = localStorage.getItem("hs-theme");
-      if (s === "light" || s === "dark") d.setAttribute("data-theme", s);
-    } catch (e) {}
+      if (s === "light" || s === "dark") {
+        d.setAttribute("data-theme", s);
+        document.querySelector('meta[name="theme-color"]').content = s === "light" ? "#f1f2eb" : "#121510";
+      }
+    } catch (e) {
+      console.info("Theme preference storage is unavailable; using the default theme.");
+    }
 
     /* If React never hydrates, the prerendered markup is still here but
        Framer Motion's initial styles have it at opacity 0. Release it. */
@@ -33,7 +34,14 @@
 </script>
 
 <noscript><style>
-  [data-reveal] { opacity: 1 !important; transform: none !important; filter: none !important; }
+  [data-reveal], [data-reveal] * { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .nav__set { display: flex !important; flex-wrap: wrap; order: 3; width: 100%; gap: 1rem; }
+  .nav__in { flex-wrap: wrap; height: auto; padding-block: 1rem; }
+  .nav { position: static; }
+  .nav__contact { display: inline-flex !important; }
+  .hero, .pagehead { padding-top: 2.5rem; }
+  .nav__toggle, .theme-toggle, .system__controls, .copybtn { display: none !important; }
+  .prog { display: none !important; }
   .timeline__line { transform: scaleY(1) !important; }
   .job__node { transform: rotate(45deg) scale(1) !important; }
 </style></noscript>

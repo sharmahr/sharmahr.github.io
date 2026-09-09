@@ -1,163 +1,109 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import ThemeToggle from "./ThemeToggle.jsx";
+import { ArrowOut } from "./icons.jsx";
 
-const HOME_LINKS = [
-  { href: "#work", label: "Work", num: "01" },
-  { href: "#experience", label: "Experience", num: "02" },
-  { href: "#toolkit", label: "Toolkit", num: "03" },
-  { href: "#recognition", label: "Recognition", num: "04" },
-  { href: "#contact", label: "Contact", num: "05" }
+const SECTIONS = [
+  { id: "work", label: "Work" },
+  { id: "experience", label: "Experience" },
+  { id: "about", label: "About" },
+  { id: "playground", label: "Playground" }
 ];
-
-const AWAY_LINKS = [
-  { to: "/#work", label: "Work", num: "01" },
-  { to: "/archive", label: "Archive", num: "02" },
-  { to: "/resume", label: "Résumé", num: "03" },
-  { to: "/#contact", label: "Contact", num: "04" }
-];
-
-/** Highlights the section the reader is actually looking at. */
-function useScrollSpy(ids, enabled) {
-  const [active, setActive] = useState(null);
-
-  useEffect(() => {
-    if (!enabled || typeof IntersectionObserver === "undefined") return undefined;
-    const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
-    if (!sections.length) return undefined;
-
-    const spy = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => spy.observe(s));
-    return () => spy.disconnect();
-  }, [ids, enabled]);
-
-  return active;
-}
 
 export default function Nav() {
-  const { pathname } = useLocation();
-  const isHome = pathname === "/";
-  const [stuck, setStuck] = useState(false);
+  const { pathname, hash } = useLocation();
   const [open, setOpen] = useState(false);
-  const panelRef = useRef(null);
-  const { scrollY } = useScroll();
+  const [active, setActive] = useState("");
+  const [stuck, setStuck] = useState(false);
+  const header = useRef(null);
+  const trigger = useRef(null);
+  const home = pathname === "/";
 
-  useMotionValueEvent(scrollY, "change", (y) => setStuck(y > 8));
+  useEffect(() => setOpen(false), [pathname, hash]);
 
-  const active = useScrollSpy(
-    HOME_LINKS.map((l) => l.href.slice(1)),
-    isHome
-  );
-
-  // The index closes on navigation, on Escape, and on any click outside it.
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    const onScroll = () => setStuck(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (!home) {
+      return () => window.removeEventListener("scroll", onScroll);
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActive(entry.target.id === "intro" ? "" : entry.target.id);
+      });
+    }, { rootMargin: "-20% 0px -65% 0px" });
+    [{ id: "intro" }, ...SECTIONS].forEach(({ id }) => {
+      const section = document.getElementById(id);
+      if (section) observer.observe(section);
+    });
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [home]);
 
   useEffect(() => {
     if (!open) return undefined;
-    const onKey = (e) => {
-      if (e.key === "Escape") setOpen(false);
+    const closeOutside = (event) => {
+      if (!header.current?.contains(event.target)) setOpen(false);
     };
-    const onDown = (e) => {
-      if (panelRef.current && !panelRef.current.contains(e.target)) setOpen(false);
+    const closeEscape = (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        trigger.current?.focus();
+      }
     };
-    document.addEventListener("keydown", onKey);
-    document.addEventListener("pointerdown", onDown);
+    const desktop = window.matchMedia("(min-width: 901px)");
+    const onResize = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    document.addEventListener("keydown", closeEscape);
+    desktop.addEventListener("change", onResize);
     return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("pointerdown", closeOutside);
+      document.removeEventListener("keydown", closeEscape);
+      desktop.removeEventListener("change", onResize);
     };
   }, [open]);
 
-  const links = isHome ? HOME_LINKS : AWAY_LINKS;
+  const sectionLink = ({ id, label }, mobile = false) => (
+    <Link
+      key={id}
+      to={`/#${id}`}
+      className={`${mobile ? "nav__mobile-link" : "nav__link"}${home && active === id ? " is-active" : ""}`}
+      aria-current={home && active === id ? "location" : undefined}
+      onClick={() => setOpen(false)}
+    >
+      {label}{mobile && <ArrowOut />}
+    </Link>
+  );
 
   return (
-    <motion.header
-      className={`nav${stuck ? " is-stuck" : ""}`}
-      initial={{ y: -18, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ type: "spring", stiffness: 140, damping: 22, delay: 0.05 }}
-      ref={panelRef}
-    >
+    <header className={`nav${stuck ? " is-stuck" : ""}`} ref={header}>
       <div className="wrap nav__in">
         <Link className="mark" to="/" aria-label="Hardik Sharma, home">
-          H<span>S</span>
+          <span className="mark__glyph" aria-hidden="true">h<span>s</span><i /></span>
+          <span className="mark__name">Hardik Sharma<span>Software engineer</span></span>
         </Link>
-        <nav className="nav__links" aria-label="Sections">
-          <div className="nav__set">
-            {isHome
-              ? HOME_LINKS.map((l) => (
-                  <a
-                    key={l.href}
-                    className={`nav__link${active === l.href.slice(1) ? " is-active" : ""}`}
-                    href={l.href}
-                  >
-                    {l.label}
-                  </a>
-                ))
-              : AWAY_LINKS.map((l) => (
-                  <Link
-                    key={l.to}
-                    className={`nav__link${pathname === l.to ? " is-active" : ""}`}
-                    to={l.to}
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-          </div>
-
-          {/* Below 900px the horizontal set cannot hold five plates, so the
-              index becomes a disclosure rather than disappearing. */}
-          <button
-            type="button"
-            className="nav__idx"
-            aria-expanded={open}
-            aria-controls="nav-index"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? "Close" : "Index"}
-          </button>
-
-          <ThemeToggle />
+        <nav className="nav__set" aria-label="Main navigation">
+          {SECTIONS.map((section) => sectionLink(section))}
         </nav>
+        <div className="nav__actions">
+          <ThemeToggle />
+          <Link className="nav__contact" to="/#contact">Let&apos;s talk <ArrowOut /></Link>
+          <button ref={trigger} className="nav__toggle" type="button" aria-controls="mobile-navigation" aria-expanded={open} onClick={() => setOpen(!open)}>
+            <span>{open ? "Close" : "Menu"}</span>
+            <span className={`menu-lines${open ? " is-open" : ""}`} aria-hidden="true"><i /><i /></span>
+          </button>
+        </div>
       </div>
-
-      <div className="nav__panel" id="nav-index" hidden={!open}>
-        <ul className="wrap plateidx">
-          {links.map((l) =>
-            isHome ? (
-              <li key={l.href}>
-                <a
-                  className={`plateidx__a${active === l.href.slice(1) ? " is-active" : ""}`}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="plateidx__n">{l.num}</span>
-                  <span>{l.label}</span>
-                </a>
-              </li>
-            ) : (
-              <li key={l.to}>
-                <Link
-                  className={`plateidx__a${pathname === l.to ? " is-active" : ""}`}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                >
-                  <span className="plateidx__n">{l.num}</span>
-                  <span>{l.label}</span>
-                </Link>
-              </li>
-            )
-          )}
-        </ul>
-      </div>
-    </motion.header>
+      <nav id="mobile-navigation" className="nav__panel wrap" aria-label="Mobile navigation" hidden={!open}>
+        {SECTIONS.map((section) => sectionLink(section, true))}
+        <Link className="nav__mobile-link" to="/resume" onClick={() => setOpen(false)}>Résumé <ArrowOut /></Link>
+        <Link className="nav__mobile-link acc" to="/#contact" onClick={() => setOpen(false)}>Let&apos;s talk <ArrowOut /></Link>
+      </nav>
+    </header>
   );
 }

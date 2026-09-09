@@ -44,10 +44,17 @@ platforms, with measurable before/after numbers attached to each.
   `src/styles/site.css`, no utility framework.
 - Deployed as a static build to GitHub Pages via GitHub Actions. No server, no
   database, no analytics backend.
+- Client navigation uses a separate route-tree copy without SSG's generated
+  data loaders. Pages need no route data, so removing an old build's JSON
+  manifest cannot break navigation in an already-open tab.
+- Static `index.html` URLs normalize to their directory routes before
+  hydration, preserving query strings and anchors.
 - Routes: home, `/resume`, `/archive`, `/work/smart-parking`, `/lab/*`
-  (interactive p5 sketches), `/credentials/*`, `/workshop`.
-- Motion via `framer-motion`; `p5`, `zdog`, `vanilla-tilt` are lazily loaded and
-  decorative or interactive extras, never required for content.
+  (interactive p5 sketches), `/credentials/*`, `/events/robotics-workshop`.
+- The home-page system sculpture uses a small, lazily loaded, original Canvas
+  2D renderer with three-dimensional geometry and a static SVG alternative.
+  CSS entrances progressively enhance already-visible HTML. Existing leaf
+  pages use `framer-motion`; `p5` loads only for interactive lab routes.
 - Must stay fast and legible on a mid-range phone; interactive sketches are
   progressive enhancement only.
 

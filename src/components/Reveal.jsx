@@ -1,31 +1,41 @@
-import { motion } from "framer-motion";
-import { ENTER, VIEWPORT } from "../lib/motion.js";
+import { useEffect, useRef } from "react";
 
-/**
- * The site's standard entrance. Framer Motion owns opacity and transform;
- * `index.html` carries a `noscript` block and a hydration watchdog so a
- * reader without working JavaScript never meets an invisible page.
- */
-export default function Reveal({
-  as = "div",
-  delay = 0,
-  y = 18,
-  className,
-  children,
-  ...rest
-}) {
-  const Tag = motion[as];
+/* Content is visible in server HTML. Only off-screen elements are enrolled
+   in the entrance, so a failed script never leaves an invisible page. */
+export default function Reveal({ as: Tag = "div", delay = 0, y = 20, className = "", children, ...rest }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!element || reduced.matches || !("IntersectionObserver" in window)) return undefined;
+    if (element.getBoundingClientRect().top < window.innerHeight) return undefined;
+
+    element.dataset.enter = "waiting";
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        element.dataset.enter = "visible";
+        observer.disconnect();
+      }
+    }, { threshold: 0.08 });
+    observer.observe(element);
+
+    const release = () => {
+      if (reduced.matches) {
+        element.dataset.enter = "visible";
+        observer.disconnect();
+      }
+    };
+    reduced.addEventListener("change", release);
+    return () => {
+      observer.disconnect();
+      reduced.removeEventListener("change", release);
+      delete element.dataset.enter;
+    };
+  }, []);
 
   return (
-    <Tag
-      data-reveal
-      className={className}
-      initial={{ opacity: 0, y, filter: "blur(3px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={VIEWPORT}
-      transition={{ ...ENTER, delay }}
-      {...rest}
-    >
+    <Tag ref={ref} data-reveal className={`reveal ${className}`} style={{ "--reveal-delay": `${delay}s`, "--reveal-y": `${y}px` }} {...rest}>
       {children}
     </Tag>
   );

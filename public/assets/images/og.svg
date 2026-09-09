@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <style>
+    @font-face { font-family: Geist; src: url("/assets/fonts/geist-latin.woff2") format("woff2"); font-weight: 300 700; }
+    text { font-family: Geist, Arial, sans-serif; }
+  </style>
+  <rect width="1200" height="630" fill="#121510"/>
+  <path d="M60 70V34m0 19h16v17m27-17H90v8h13v10H90" fill="none" stroke="#d2ef8a" stroke-width="4"/>
+  <text x="123" y="57" fill="#eff1e9" font-size="17" font-weight="450">Hardik Sharma</text>
+  <text x="1140" y="57" fill="#929d86" font-size="12" text-anchor="end" letter-spacing="1">SOFTWARE ENGINEER</text>
+  <path d="M60 98h1080" stroke="#353d2e"/>
+  <text x="56" y="233" fill="#eff1e9" font-size="96" font-weight="450" letter-spacing="-7">Complex</text>
+  <text x="56" y="331" fill="#eff1e9" font-size="96" font-weight="450" letter-spacing="-7">systems.</text>
+  <text x="56" y="430" fill="#d2ef8a" font-size="96" font-weight="450" letter-spacing="-7">Real impact.</text>
+  <text x="60" y="481" fill="#bdc3b5" font-size="17">Distributed systems. Applied AI. Things that work.</text>
+  <g transform="translate(626 26) scale(.84)" stroke="#708259" stroke-width="1">
+    <path d="m115 402 185-108 185 108v12L300 522 115 414Z" fill="#192117"/>
+    <path d="m115 402 185 108 185-108-185-108Z" fill="#232d20"/>
+    <path d="M180 410V215m240 210V225M300 510V280" fill="none" stroke-dasharray="3 6"/>
+    <path d="m142 303 158-91 158 91v12l-158 92-158-92Z" fill="#1c2419"/>
+    <path d="m142 303 158 91 158-91-158-91Z" fill="#293123"/>
+    <path d="m166 201 134-78 134 78v15l-134 78-134-78Z" fill="#20291d"/>
+    <path d="m166 201 134 78 134-78-134-78Z" fill="#303d25"/>
+    <path d="m190 201 110-64 110 64-110 64Zm34 0 76-44 76 44-76 44Z" fill="none"/>
+    <path d="m175 306 125 72 125-72M206 321l94-54 94 54M145 404l155 90 155-90M175 404l125 73 125-73" fill="none"/>
+    <path d="m257 183 43-25 43 25v23l-43 25-43-25Z" fill="#b4d564" stroke="#d5f695"/>
+    <path d="m257 183 43 25 43-25-43-25Z" fill="#d6f5a2"/>
+    <path d="M300 208v23" stroke="#688139"/>
+    <path d="m237 340 21-12 21 12-21 12Zm84 0 21-12 21 12-21 12Z" fill="#b4d564"/>
+  </g>
+  <path d="M60 546h1080" stroke="#353d2e"/>
+  <text x="60" y="585" fill="#929d86" font-size="13">Microsoft / Harness / VMware</text>
+  <text x="1140" y="585" fill="#d2ef8a" font-size="13" text-anchor="end">sharmahr.github.io</text>
+</svg>

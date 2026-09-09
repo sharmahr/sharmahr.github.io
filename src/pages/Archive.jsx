@@ -11,7 +11,7 @@ const MotionLink = motion.create(Link);
 function Card({ href, to, image, alt, title, description, meta, external = false }) {
   const children = (
     <>
-      <img className="card__img" src={image} alt={alt} />
+      <img className="card__img" src={image} alt={alt} loading="lazy" decoding="async" />
       <span className="card__t">{title}</span>
       <span className="card__d">{description}</span>
       <span className="card__meta">{meta}</span>
